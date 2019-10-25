@@ -15,12 +15,10 @@ use Illuminate\Http\Request;
 Route::prefix('v1')->namespace('Api')->group(function (){
     Route::post('login','Auth\\LoginJwtController@login')->name('login');
 
-
     //middleware jwt
     Route::group(['middleware'=>['jwt.auth']],function (){
 
     });
-
 
 });
 

@@ -1,13 +1,9 @@
-FROM nginx
-
-
-
 FROM php:7.3-fpm-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     TZ="America/Sao_Paulo"
 
-#COPY ../7.3/conf/40-custom.ini /usr/local/etc/php/conf.d/40-custom.ini
+COPY conf/40-custom.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 RUN set -e \
     && apk update \

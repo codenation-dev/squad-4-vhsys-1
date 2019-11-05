@@ -7,6 +7,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+****** DOCUMENTAÇÃO **************
+http://doc.aceleradev.codeinfinity.com.br/
+
+
+
 
 
 Central de Erros

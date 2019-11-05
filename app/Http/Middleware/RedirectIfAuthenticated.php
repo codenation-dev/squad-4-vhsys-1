@@ -17,6 +17,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        header("Access-Control-Allow-Origin: *");
+
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }

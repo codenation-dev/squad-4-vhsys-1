@@ -28,8 +28,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-    print_r($response);die;
-    
+
     $retornoToken = json_decode($response,TRUE);
     session_start();
     $_SESSION['Token'] = $retornoToken['token'];

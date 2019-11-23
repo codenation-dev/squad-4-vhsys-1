@@ -1,3 +1,13 @@
+<?php 
+
+session_start();
+
+if (!isset($_SESSION['Token'])) {
+    header("location: index.html");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="br">
 <head>
@@ -10,7 +20,7 @@
     <div class="card text-white bg-info mb-3">
         <div class="card-header" style="height: 100px;">
             <div style="font-size: 15px; text-align: right;">
-                <a href="index.html" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
+            <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="margin-top: 15px; font-size: 25px;">Squad 4 - Projeto Final - Central de Erros</div>
         </div>

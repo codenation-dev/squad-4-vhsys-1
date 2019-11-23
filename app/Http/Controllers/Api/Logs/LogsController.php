@@ -36,6 +36,8 @@ class LogsController extends Controller
     public function store(Request $request)
     {
         //
+        dd('Aqui');
+        LogsModel::create($request->all());
     }
 
     /**

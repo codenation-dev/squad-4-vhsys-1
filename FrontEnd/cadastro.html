@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="br">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="bootstrap-4.3.1-dist/css/bootstrap.css">
+        <title> Central de Erros </title>
+    </head>
+    <body>
+        <div class="card text-center" style="height: 100%;">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header" style="height: 100px;">
+                    <div style="font-size: 15px; text-align: right;">
+                        <a href="index.html" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 25px;">Squad 4 - Projeto Final - Central de Erros</div>
+                </div>
+            </div>
+            Cadastrar novo Usu&aacute;rio.
+            <br>
+            <br>
+            <div class="card-body" align="center">
+                <form method="POST" action="login.php" style="width: 70%">
+                    <div  style="text-align: left;">
+                        <label>Nome Completo</label>
+                        <input type="nome" class="form-control" id="nome" placeholder="Nome Completo">
+                    </div>
+                    <br>
+                    <div  style="text-align: left;">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Senha">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <label>Data de Libera&ccedil;&atilde;o</label>
+                        <input type="date" class="form-control" id="dtInicio" placeholder="Informe a Data de Libera&ccedil;&atilde; do Usu&aacute;rio">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <label>Data de Expira&ccedil;&atilde;o</label>
+                        <input type="date" class="form-control" id="dtFim" placeholder="Informe a Data de Expira&ccedil;&atilde;o do Usu&aacute;rio">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <input type="checkbox" name="admin" value="admin"> Administrador do Sistema
+                    </div>
+                    <br>
+                    <a href="index.html" class="btn btn-outline-secondary">Voltar</a>
+                    <a href="login.html" class="btn btn-outline-secondary">Cadastrar</a>
+
+                </form>
+            </div>
+            <div class="card text-white bg-info mb-3">
+                <div class="card-footer" style="height: 100px;">
+                    <div style="margin-top: 25px"> Central de Erros @VHSYS</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -20,6 +20,11 @@ Route::group(['middleware' => ['cors']], function () {
         //public routes
         Route::post('requestToken', 'Auth\\LoginJwtController@login')->name('requestToken');
         Route::post('registerUser', 'Auth\\LoginJwtController@registrar')->name('registerUser');
+
+
+        Route::get('newLog', 'Logs\\LogsController@store')->name('newLog');
+
+
         //FIM PUBLIC ROUTES
 
         //middleware jwt

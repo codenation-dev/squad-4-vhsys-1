@@ -4,7 +4,7 @@
     <list default="true" id="8954476d-05e0-46b2-96f6-c7f4680a950a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Log.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,6 +304,7 @@
       <workItem from="1575075362229" duration="4332000" />
       <workItem from="1575128808168" duration="523000" />
       <workItem from="1575132958674" duration="570000" />
+      <workItem from="1575135187409" duration="2242000" />
     </task>
     <task id="LOCAL-00001" summary="add Doc">
       <created>1572989024525</created>
@@ -345,12 +346,12 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2059" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1574901580007" />
-    <state x="466" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1575132960535">
+    <state x="466" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1575135188685">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="466" y="239" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1574897235598" />
     <state x="2021" y="341" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1575075369730" />
-    <state x="466" y="242" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1575132960535" />
+    <state x="466" y="242" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1575135188685" />
     <state x="655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574819827339" />
   </component>
 </project>

@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::group(['middleware' => ['cors']], function () {
     Route::prefix('v1')->namespace('Api')->group(function () {
         //public routes
@@ -39,8 +40,12 @@ Route::group(['middleware' => ['cors']], function () {
             // FIM ROUTES USERS
 
             //ROUTES LOGS
-            Route::prefix('logs')->group(function () {
-                Route::get('list', 'Logs\\LogsController@index')->name('listLogs');
+            Route::prefix('/logs')->group(function() {
+
+                Route::get('/', 'LogController@index')->name('logs');
+                Route::get('/{id}', 'LogController@show')->name('single_logs');
+                Route::post('/', 'LogController@create')->name('create_logs');
+
             });
             //FIM ROUTES LOGS
         });
@@ -49,6 +54,13 @@ Route::group(['middleware' => ['cors']], function () {
 });
 
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+
+
+
+
+
+/*
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+*/

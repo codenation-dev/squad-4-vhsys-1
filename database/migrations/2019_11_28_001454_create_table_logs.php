@@ -15,6 +15,12 @@ class CreateTableLogs extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('level',64);
+            $table->text('log');
+            $table->integer('events')->unsigned();
+            $table->integer('user_created')->unsigned();
+            $table->integer('user_updated')->nullable($value = true);
+            $table->foreign('user_created')->references('id')->on('users');
             $table->timestamps();
         });
     }

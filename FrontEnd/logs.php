@@ -28,7 +28,7 @@ if (!isset($_SESSION['Token'])) {
     Central de Erros - Usu&aacute;rio X - Token: <?php echo $_SESSION['Token']; ?>
     <br>
     <div style="font-size: 15px; text-align: right;">
-        <a href="cadastroLogs.html" >Novo Erro</a>
+        <a href="cadastroLogs.php" >Novo Erro</a>
     </div>
     <br>
     <div class="table-responsive" align="center">

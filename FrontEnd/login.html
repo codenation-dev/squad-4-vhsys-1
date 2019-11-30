@@ -6,7 +6,7 @@
         <title> Central de Erros </title>
     </head>
     <body>
-        <div class="card text-center" style="height: 100%;">
+        <div class="card text-center" style="height: 100vh;">
             <div class="card text-white bg-info mb-3">
                 <div class="card-header" style="height: 100px;">
                     <div style="margin-top: 15px; font-size: 25px;">Squad 4 - Projeto Final - Central de Erros</div>
@@ -19,12 +19,12 @@
                 <form method="POST" action="login.php" style="width: 70%;">
                     <div  style="text-align: left;">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu Email">
+                        <input type="email" class="form-control" required oninvalid="this.setCustomValidity('E-mail Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}"  id="email" name="email" placeholder="Seu Email">
                     </div>
                     <br>
                     <div style="text-align: left;">
                         <label>Senha</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Sua Senha">
+                        <input type="password" class="form-control" required oninvalid="this.setCustomValidity('Senha Obrigatória')" onchange="try{setCustomValidity('')}catch(e){}" id="password" name="password" placeholder="Sua Senha">
                     </div>
                     <br>
                     <button class="btn btn-outline-secondary" type="submit">Entrar</button>

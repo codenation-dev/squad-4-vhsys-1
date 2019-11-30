@@ -41,7 +41,6 @@ Route::group(['middleware' => ['cors']], function () {
 
             //ROUTES LOGS
             Route::prefix('/logs')->group(function() {
-
                 Route::get('/', 'LogController@index')->name('logs');
                 Route::get('/{id}', 'LogController@show')->name('single_logs');
                 Route::post('/', 'LogController@create')->name('create_logs');

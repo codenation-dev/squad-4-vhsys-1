@@ -15,9 +15,9 @@ class LogController extends Controller
         $this->log = $log;
     }
 
-    public function index ()
+    public function index (string $order = 'level')
     {
-        return response()->json($this->log->paginate(10), 200);
+        return response()->json($this->log->orderBy($order)->paginate(10), 200);
     }
 
     public function show (Log $id)

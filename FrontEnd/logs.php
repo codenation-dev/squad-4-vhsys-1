@@ -6,6 +6,8 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
+include 'listLogs.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -23,47 +25,39 @@ if (!isset($_SESSION['Token'])) {
             <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px;">Squad 4 - Projeto Final - Central de Erros</div>
+            <div style="text-align:right;" ><a href="cadastroLogs.php" style="color: white; text-decoration:none">Cadastrar novo Erro</a></div>
         </div>
     </div>
-    Central de Erros - Usu&aacute;rio X - Token: <?php echo $_SESSION['Token']; ?>
-    <br>
-    <div style="font-size: 15px; text-align: right;">
-        <a href="cadastroLogs.php" >Novo Erro</a>
+    <div style="text-align: left"> 
+        Ol&aacute; Usu&aacute;rio X 
+        <br>
+        <br>
+        Seu Token &eacute;: <?php echo $_SESSION['Token']; ?>
     </div>
+    <br>
     <br>
     <div class="table-responsive" align="center">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col">Tipo</th>
-                <th scope="col">Titulo</th>
                 <th scope="col">Descri&ccedil;&atilde;o</th>
+                <th scope="col">Ambiente</th>
                 <th scope="col">Status</th>
                 <th scope="col">Usu&aacute;rio</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">Erro</th>
-                <td>Login</td>
-                <td>Usu&aacute;rio n&atilde;o cadastrado</td>
-                <td>Ativo</td>
-                <td>Xxxx</td>
+  
+        <?php foreach($response['data'] as $result){ ?>
+           <tr>
+                <th scope="row"><?php echo $result['level'] ?></th>
+                <td><?php echo $result['log'] ?></td>
+                <td><?php echo $result['ambience'] ?></td>
+                <td><?php echo $result['status'] ?></td>
+                <td><?php echo $result['user_created'] ?></td>
             </tr>
-            <tr>
-                <th scope="row">Erro2</th>
-                <td>Login</td>
-                <td>Usu&aacute;rio n&atilde;o cadastrado</td>
-                <td>Conclu&iacute;do</td>
-                <td>Xxxx</td>
-            </tr>
-            <tr>
-                <th scope="row">Erro3</th>
-                <td>Login</td>
-                <td>Usu&aacute;rio n&atilde;o cadastrado</td>
-                <td>Ativo</td>
-                <td>ZZZzzz</td>
-            </tr>
+        <?php } ?>
             </tbody>
         </table>
         <br>

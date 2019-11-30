@@ -28,6 +28,9 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  $retornoToken = json_decode($response,TRUE);
-  print_r($retornoToken);
+  $retornoCad = json_decode($response,TRUE);
+  if ($retornoCad['Message']=='Registered Successfully') {
+    header('Location: login.html');
+    exit;
+  }
 }

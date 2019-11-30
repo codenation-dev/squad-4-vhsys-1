@@ -22,17 +22,17 @@
                 <form method="POST" action="cadastroUser.php" style="width: 70%">
                     <div  style="text-align: left;">
                         <label>Nome Completo</label>
-                        <input type="nome" class="form-control" id="nome" name="nome" placeholder="Nome Completo">
+                        <input type="nome" class="form-control" required oninvalid="this.setCustomValidity('Nome Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="nome" name="nome" placeholder="Nome Completo">
                     </div>
                     <br>
                     <div  style="text-align: left;">
                         <label>E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        <input type="email" class="form-control" required oninvalid="this.setCustomValidity('E-mail Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="email" name="email" placeholder="Email">
                     </div>
                     <br>
                     <div style="text-align: left;">
                         <label>Senha</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Senha">
+                        <input type="password" class="form-control" required oninvalid="this.setCustomValidity('Senha Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="password" name="password" placeholder="Senha">
                     </div>
                     <br>
                     <div style="text-align: left;">

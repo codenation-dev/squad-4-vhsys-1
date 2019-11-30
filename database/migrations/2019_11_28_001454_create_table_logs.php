@@ -18,6 +18,7 @@ class CreateTableLogs extends Migration
             $table->string('level',64);
             $table->text('log');
             $table->integer('events')->unsigned();
+            $table->string('ambience',11);
             $table->integer('user_created')->unsigned();
             $table->integer('user_updated')->nullable($value = true);
             $table->foreign('user_created')->references('id')->on('users');

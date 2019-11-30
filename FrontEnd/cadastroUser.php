@@ -4,7 +4,7 @@ $curl = curl_init();
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://localhost/ProjetoFinal/squad-4-vhsys-1/public/api/v1/registerUser",
+  CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/registerUser",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,

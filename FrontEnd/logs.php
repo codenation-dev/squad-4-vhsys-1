@@ -47,6 +47,7 @@ include 'listLogs.php';
                 <th scope="col">Tipo</th>
                 <th scope="col">Titulo</th>
                 <th scope="col">Ambiente</th>
+                <th scope="col">Eventos</th>
                 <th scope="col">Status</th>
                 <th scope="col">Usu&aacute;rio</th>
                 <th scope="col">Detalhes</th>
@@ -59,11 +60,12 @@ include 'listLogs.php';
                 <th scope="row"><?php echo $result['level'] ?></th>
                 <td><?php echo $result['log'] ?></td>
                 <td><?php echo $result['ambience'] ?></td>
-                <td><?php echo $result['status'] ?></td>
+               <td><?php echo $result['events'] ?></td>
+               <td><?php echo $result['status'] ?></td>
                 <td><?php echo $result['user_created'] ?></td>
                 <td>
                     <div class="container">
-                       <button type="button" href="<?php echo $result['log']; ?>" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detalhes</button>
+                       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Detalhes</button>
                    </div>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">

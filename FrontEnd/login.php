@@ -34,6 +34,4 @@ if ($err) {
     $_SESSION['Token'] = $retornoToken['token'];
     header('Location: logs.php');
     exit;
-    //print_r($retornoToken['token']); 
-    
 }

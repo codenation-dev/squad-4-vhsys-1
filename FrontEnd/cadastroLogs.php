@@ -29,19 +29,53 @@ if (!isset($_SESSION['Token'])) {
     <br>
     <br>
     <div class="card-body" align="center">
-        <form method="POST" action="login.php" style="width: 70%">
+        <form method="POST" action="createLog.php" style="width: 70%">
             <div  style="text-align: left;">
-                <label>Titulo</label>
-                <input type="text" class="form-control" id="titulo" placeholder="Titulo do Log">
+                <label>Tipo</label>
+                <p>
+                    <select class="form-control" id="level" name="level">
+                        <option value="">Warning</option>
+                        <option value="">Error</option>
+                        <option value="">Bug</option>
+                    </select>
+                </p>
             </div>
             <br>
             <div  style="text-align: left;">
                 <label>Descri&ccedil;&atilde;o do Erro</label>
-                <input type="text" class="form-control" id="descricao" placeholder="255 caracteres" style="height: 255px">
+                <input type="text" class="form-control" id="log" name="log" placeholder="255 caracteres" style="height: 255px">
+            </div>
+            <div  style="text-align: left;">
+                <label>Eventos</label>
+                <input type="text" class="form-control" id="events" name="events" placeholder="Número de Eventos Ocorridos.">
+            </div>
+            <div  style="text-align: left;">
+                <label>Status</label>
+                <p>
+                    <select class="form-control" id="status" name="status">
+                        <option value="">Conclu&iacute;do</option>
+                        <option value="">Pendente</option>
+                        <option value="">Aguardando</option>
+                    </select>
+                </p>
+            </div>
+            <div  style="text-align: left;">
+                <label>Ambiente</label>
+                <p>
+                    <select class="form-control" id="ambience" name="ambience">
+                        <option value="">Produ&ccedil;&atilde;o </option>
+                        <option value="">Homologa&ccedil;&atilde;o</option>
+                        <option value="">Desenvolvimento</option>
+                    </select>
+                </p>
+            </div>
+            <div  style="text-align: left;">
+                <label>Usuário</label>
+                <input type="text" class="form-control" id="user_created" name="user_created" placeholder="Usuario de criação.">
             </div>
             <br>
-            <a href="logs.html" class="btn btn-outline-secondary">Voltar</a>
-            <a href="" class="btn btn-outline-secondary">Cadastrar</a>
+            <a href="logs.php" class="btn btn-outline-secondary">Voltar</a>
+            <button type="submit" class="btn btn-outline-secondary">Cadastrar</button>
 
         </form>
     </div>

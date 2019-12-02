@@ -40,7 +40,11 @@ if (!isset($_SESSION['Token'])) {
                     </select>
                 </p>
             </div>
-
+            <div  style="text-align: left;">
+                <label>Titulo</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titulo do Log.">
+            </div>
+            <br>
             <div  style="text-align: left;">
                 <label>Descri&ccedil;&atilde;o do Erro</label>
                 <input type="text" class="form-control" id="log" name="log" placeholder="255 caracteres" style="height: 255px">

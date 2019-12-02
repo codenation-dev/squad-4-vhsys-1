@@ -12,7 +12,7 @@ curl_setopt_array($curl, array(
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS =>  "level=". $_POST['level']."&status=".$_POST['status']."&log=".$_POST['log']."&ambience=".$_POST['ambience']."&events=".$_POST['events']."&user_created=".$_POST['user_created'],
+    CURLOPT_POSTFIELDS =>  "level=". $_POST['level']."title=". $_POST['title']."&status=".$_POST['status']."&log=".$_POST['log']."&ambience=".$_POST['ambience']."&events=".$_POST['events']."&user_created=".$_POST['user_created'],
     CURLOPT_HTTPHEADER => array(
         "Accept: application/json",
         "Accept-Encoding: gzip, deflate",

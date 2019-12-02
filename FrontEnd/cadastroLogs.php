@@ -40,22 +40,24 @@ if (!isset($_SESSION['Token'])) {
                     </select>
                 </p>
             </div>
-            <br>
+
             <div  style="text-align: left;">
                 <label>Descri&ccedil;&atilde;o do Erro</label>
                 <input type="text" class="form-control" id="log" name="log" placeholder="255 caracteres" style="height: 255px">
             </div>
+            <br>
             <div  style="text-align: left;">
                 <label>Eventos</label>
                 <input type="text" class="form-control" id="events" name="events" placeholder="Número de Eventos Ocorridos.">
             </div>
+            <br>
             <div  style="text-align: left;">
                 <label>Status</label>
                 <p>
                     <select class="form-control" id="status" name="status">
-                        <option value="">Conclu&iacute;do</option>
+                        <option value="">Ativo</option>
                         <option value="">Pendente</option>
-                        <option value="">Aguardando</option>
+                        <option value="">Resolvido</option>
                     </select>
                 </p>
             </div>

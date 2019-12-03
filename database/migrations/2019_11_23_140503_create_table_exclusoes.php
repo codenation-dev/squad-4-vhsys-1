@@ -13,9 +13,9 @@ class CreateTableExclusoes extends Migration
      */
     public function up()
     {
-        Schema::create('exclusoes', function (Blueprint $table) {
+        Schema::create('exclusions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('valor',4000);
+            $table->string('value',4000);
             $table->integer('id_user');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateTableExclusoes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exclusoes');
+        Schema::dropIfExists('exclusions');
     }
 }

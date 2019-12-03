@@ -18,10 +18,12 @@ class CreateTableLogs extends Migration
             $table->string('level',64);
             $table->text('log');
             $table->integer('events')->unsigned();
-            $table->string('ambience',11);
-            $table->string('status',11);
+            $table->string('ambience',60);
+            $table->string('status',60);
+            $table->string('title',80);
             $table->integer('user_created')->unsigned();
             $table->integer('user_updated')->nullable($value = true);
+            $table->softDeletes();
             $table->foreign('user_created')->references('id')->on('users');
             $table->timestamps();
         });

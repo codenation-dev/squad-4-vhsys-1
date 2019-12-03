@@ -15,14 +15,16 @@ class LoginJwtController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->all(['email', 'password']); 
+        $credentials = $request->all(['email', 'password']);
 
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
         }
+        $user = User::where('email','=',$request['email'])->first();
         return response()->json(
             [
                 'status' => 'OK',
+                'user' => $user['name'],
                 'token' => $token
             ], 200);
     }

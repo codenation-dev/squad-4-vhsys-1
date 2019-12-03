@@ -44,8 +44,17 @@ Route::group(['middleware' => ['cors']], function () {
                 Route::get('/list', 'LogController@index')->name('logs');
                 Route::get('/list/{id}', 'LogController@show')->name('single_logs');
                 Route::post('/create', 'LogController@create')->name('create_logs');
+                Route::post('/tofile/{id}', 'LogController@tofile')->name('tofile');
+                Route::get('/search', 'LogController@search')->name('search');
+                Route::delete('delete/{id}', 'LogController@destroy')->name('delete');
 
             });
+
+            Route::prefix('/exclusions')->group(function() {
+                Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('create_logs');
+                Route::get('/list', 'Exclusions\\ExclusionsController@show')->name('list_exclusions');
+            });
+
             //FIM ROUTES LOGS
         });
         //FIM MIDDLEWARE JWT

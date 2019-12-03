@@ -100,44 +100,36 @@ include 'listLogs.php';
                <td><?php echo $result['status'] ?></td>
                 <td>
                     <div class="container">
-                       <button type="button" data-id="<?php  echo $result['id']?>" data-toggle="modal" data-target="#myModal">
-                           <i class="fa fa-plus"></i></button>
+                       <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
+                           <i class="fa fa-plus"></i></a>
                     </div>
-                    <div class="modal fade" id="myModal" style="text-align: left">
-                        <div class="modal-dialog">
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal<?php echo $result['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"><?php echo $result['title'] ?></h5>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $result['title'] ?></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
                                 </div>
                                 <div class="modal-body" >
-                                    <div class="fetched-data" style="float: left">
-                                        <h5 class="modal-title">Descri&ccedil;&atilde;o </h5>
-                                        <?php echo $result['log'] ?>
-                                    </div>
-                                    <div class="fetched-data" style="float: right; color: #5a6268">
-                                        <h5 class="modal-title">Level </h5>
-                                        <?php echo $result['level'] ?>
+                                    <div class="row" style="text-align: justify">
+                                        <div class="col-6" style="text-align: left"><?php echo $result['level'] ?> em <?php echo $result['ambience'] ?></div>
                                     </div>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="fetched-data" style="float: left">
-                                        <h5 class="modal-title">Origem </h5>
-                                        <?php echo $result['ambience'] ?>
+                                <div class="modal-body" >
+                                    <div class="row" style="text-align: justify">
+                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $result['log'] ?></div>
+                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $result['level'] ?><br><br>
+                                            <b>Eventos</b><br><?php echo $result['events'] ?><br><br>
+                                            <b>Usu&aacute;rio:</b><br><?php echo $result['user_created'] ?></div>
                                     </div>
-                                    <div class="fetched-data" style="float: right; color: #5a6268">
-                                        <h5 class="modal-title">Usu&aacute;rio </h5>
-                                        <?php echo $result['user_created'] ?>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar
-                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Fim Modal -->
                 </td>
             </tr>
         <?php } ?>

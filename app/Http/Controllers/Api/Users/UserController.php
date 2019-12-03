@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\Users;
 
+use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\Request\UsersRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -103,6 +105,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user =  User::findOrFail($id);
+
+        $exclusion = new ExclusionsController();
+        $user = Auth::user();
+        $data = [
+            'value'=> json_encode($user),
+            'id_user' => $user['id']
+        ];
+
+        $exclusion->create($data);
+
+
         $user->delete();
         return response()->json([
             'status' => 'OK',

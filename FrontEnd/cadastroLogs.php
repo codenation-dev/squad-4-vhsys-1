@@ -46,7 +46,7 @@ if (!isset($_SESSION['Token'])) {
             </div>
             <br>
             <div  style="text-align: left;">
-                <label>Descri&ccedil;&atilde;o do Erro</label>
+                <label>Descri&ccedil;&atilde;o do Log</label>
                 <input type="text" class="form-control" id="log" name="log" placeholder="255 caracteres" style="height: 255px">
             </div>
             <br>
@@ -74,10 +74,6 @@ if (!isset($_SESSION['Token'])) {
                         <option value="">Desenvolvimento</option>
                     </select>
                 </p>
-            </div>
-            <div  style="text-align: left;">
-                <label>Usuário</label>
-                <input type="text" class="form-control" id="user_created" name="user_created" placeholder="Usuario de criação.">
             </div>
             <br>
             <a href="logs.php" class="btn btn-outline-secondary">Voltar</a>

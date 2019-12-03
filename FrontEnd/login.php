@@ -32,6 +32,7 @@ if ($err) {
     $retornoToken = json_decode($response,TRUE);
     session_start();
     $_SESSION['Token'] = $retornoToken['token'];
+    $_SESSION['user'] = $retornoToken['user'];
     header('Location: logs.php');
     exit;
 }

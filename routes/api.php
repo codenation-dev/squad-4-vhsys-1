@@ -23,8 +23,9 @@ Route::group(['middleware' => ['cors']], function () {
         Route::post('registerUser', 'Auth\\LoginJwtController@registrar')->name('registerUser');
 
 
-        Route::get('newLog', 'Logs\\LogsController@store')->name('newLog');
-
+        Route::get('/debug-sentry', function () {
+            throw new Exception('My first Sentry error!');
+        });
 
         //FIM PUBLIC ROUTES
 

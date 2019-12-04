@@ -40,7 +40,8 @@ class LogController extends Controller
             $logData = $request->all();
             $logData['user_created'] = $user['id'];
 
-            $this->log->create($logData);
+
+           $this->log->create($logData);
 
             return response()->json([
                 'message' => 'Log criado com sucesso!',

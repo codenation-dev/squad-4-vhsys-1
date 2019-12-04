@@ -4,6 +4,7 @@ session_start();
 
 $curl = curl_init();
 
+
 curl_setopt_array($curl, array(
     CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/logs/create",
     CURLOPT_RETURNTRANSFER => true,
@@ -12,21 +13,17 @@ curl_setopt_array($curl, array(
     CURLOPT_TIMEOUT => 30,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "POST",
-    CURLOPT_POSTFIELDS =>  "level=". $_POST['level']."title=". $_POST['title']."&status=".$_POST['status']."&log=".$_POST['log']."&ambience=".$_POST['ambience']."&events=".$_POST['events'],
+    CURLOPT_POSTFIELDS => "level=".$_POST['level']."&log=".$_POST['log']."&events=".intval($_POST['events'])."&ambience=".$_POST['ambience']."&status=".$_POST['status']."&title=".$_POST['title']."",
     CURLOPT_HTTPHEADER => array(
         "Accept: application/json",
-        "Accept-Encoding: gzip, deflate",
-        "Authorization: bearer " . $_SESSION['Token'],
-        "Cache-Control: no-cache",
-        "Connection: keep-alive",
-        "Content-Length: 97",
+        "Authorization: bearer ".$_SESSION['Token'],
         "Content-Type: application/x-www-form-urlencoded",
-        "Host: backacelera.codeinfinity.com.br",
-        "Postman-Token: 1848dae1-39d8-4471-973f-908996ba897e,644eccb9-4d5c-4d27-9734-4f22f7889000",
-        "User-Agent: PostmanRuntime/7.20.1",
+        "Postman-Token: cbfbfbee-1d18-477d-9686-8e4076dfd35c",
         "cache-control: no-cache"
     ),
 ));
+
+
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
@@ -37,7 +34,7 @@ if ($err) {
     echo "cURL Error #:" . $err;
 } else {
     $retornoCad = json_decode($response, TRUE);
-    if ($retornoCad['Message'] == 'Log criado com sucesso!') {
+    if ($retornoCad['message'] == 'Log criado com sucesso!') {
         header('Location: logs.php');
         exit;
     }

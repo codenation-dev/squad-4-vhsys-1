@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Log;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -34,6 +35,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+        if (app()->bound('sentry') && $this->shouldReport($exception)){
+            app('sentry')->captureException($exception);
+        }
         parent::report($exception);
     }
 

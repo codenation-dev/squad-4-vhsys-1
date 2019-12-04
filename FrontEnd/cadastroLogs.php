@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -34,9 +34,9 @@ if (!isset($_SESSION['Token'])) {
                 <label>Tipo</label>
                 <p>
                     <select class="form-control" id="level" name="level">
-                        <option value="">Warning</option>
-                        <option value="">Error</option>
-                        <option value="">Bug</option>
+                        <option value="Warning">Warning</option>
+                        <option value="Error">Error</option>
+                        <option value="Bug">Bug</option>
                     </select>
                 </p>
             </div>
@@ -52,16 +52,16 @@ if (!isset($_SESSION['Token'])) {
             <br>
             <div  style="text-align: left;">
                 <label>Eventos</label>
-                <input type="text" class="form-control" id="events" name="events" placeholder="Número de Eventos Ocorridos.">
+                <input type="number" class="form-control" id="events" name="events" placeholder="Número de Eventos Ocorridos.">
             </div>
             <br>
             <div  style="text-align: left;">
                 <label>Status</label>
                 <p>
                     <select class="form-control" id="status" name="status">
-                        <option value="">Ativo</option>
-                        <option value="">Pendente</option>
-                        <option value="">Resolvido</option>
+                        <option value="Ativo">Ativo</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Resolvido">Resolvido</option>
                     </select>
                 </p>
             </div>
@@ -69,9 +69,9 @@ if (!isset($_SESSION['Token'])) {
                 <label>Ambiente</label>
                 <p>
                     <select class="form-control" id="ambience" name="ambience">
-                        <option value="">Produ&ccedil;&atilde;o </option>
-                        <option value="">Homologa&ccedil;&atilde;o</option>
-                        <option value="">Desenvolvimento</option>
+                        <option value="Produca">Produ&ccedil;&atilde;o </option>
+                        <option value="Homologacao">Homologa&ccedil;&atilde;o</option>
+                        <option value="Desenvolvimento">Desenvolvimento</option>
                     </select>
                 </p>
             </div>

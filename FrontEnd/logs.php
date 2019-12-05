@@ -119,22 +119,30 @@ if (!empty($_POST)) {
         <table class="table table-striped">
             <thead>
             <tr style="text-align: center">
+                <th scope="col">#</th>
                 <th scope="col">Level</th>
                 <th scope="col">Descri&ccedil;&atilde;o</th>
                 <th scope="col">Eventos</th>
-                <th scope="col">Status</th>
                 <th scope="col">Detalhes</th>
+                <th scope="col">Arquivar</th>
             </tr>
             </thead>
             <tbody>
-            <?php print_r($response); ?>
+
         <?php foreach($response['data'] as $result){ ?>
 
            <tr style="text-align: center">
+               <td>
+                   <div class="input-group">
+                       <form action="delete.php" method="POST"  >
+                           <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                           <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
+                       </form>
+                   </div>
+               </td>
                 <th scope="row"><?php echo $result['level'] ?></th>
                 <td><?php echo $result['log'] ?></td>
                <td><?php echo $result['events'] ?></td>
-               <td><?php echo $result['status'] ?></td>
                 <td>
                     <div class="container">
                        <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
@@ -159,8 +167,13 @@ if (!empty($_POST)) {
                                     <div class="row" style="text-align: justify">
                                         <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $result['log'] ?></div>
                                         <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $result['level'] ?><br><br>
-                                            <b>Eventos</b><br><?php echo $result['events'] ?><br><br>
-                                            <b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
+                                            <b>Eventos</b><br><?php echo $result['events'] ?><br></div>
+                                    </div>
+                                </div>
+                                <div class="modal-body" >
+                                    <div class="row" style="text-align: justify">
+                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $result['status'] ?></div>
+                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +181,14 @@ if (!empty($_POST)) {
                     </div>
                     <!-- Fim Modal -->
                 </td>
+               <td>
+                   <div class="input-group">
+                       <form action="arquivar.php" method="POST"  >
+                           <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                           <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-archive"></i></button>
+                       </form>
+                   </div>
+               </td>
             </tr>
         <?php } ?>
             </tbody>

@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8954476d-05e0-46b2-96f6-c7f4680a950a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/sentry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/LogTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/cadastroLogs.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/cadastroLogs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrontEnd/createLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/FrontEnd/createLog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +212,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Feature" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -232,13 +226,14 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Docker" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Http/Requests" />
       <recent name="$PROJECT_DIR$/Docker/nginx" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\squad-4-vhsys-1\tests\Feature" />
+      <recent name="$PROJECT_DIR$/Docker" />
     </key>
   </component>
   <component name="RunManager">
@@ -316,6 +311,8 @@
       <workItem from="1575320313360" duration="13341000" />
       <workItem from="1575372594276" duration="948000" />
       <workItem from="1575404543350" duration="9558000" />
+      <workItem from="1575511346093" duration="563000" />
+      <workItem from="1575513371958" duration="1095000" />
     </task>
     <task id="LOCAL-00001" summary="add Doc">
       <created>1572989024525</created>
@@ -365,12 +362,13 @@
       <screen x="0" y="174" width="2560" height="702" />
     </state>
     <state x="1063" y="277" width="424" height="484" key="FileChooserDialogImpl/2560.147.1366.768/0.174.2560.702@0.174.2560.702" timestamp="1575374069340" />
-    <state x="873" y="404" key="com.intellij.ide.util.TipDialog" timestamp="1575372832242">
-      <screen x="0" y="174" width="2560" height="702" />
+    <state x="466" y="242" key="com.intellij.ide.util.TipDialog" timestamp="1575513371878">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="466" y="239" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1574897235598" />
     <state x="2021" y="341" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1575075369730" />
-    <state x="466" y="242" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1575135188685" />
+    <state x="466" y="242" key="com.intellij.ide.util.TipDialog/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1575513371878" />
+    <state x="466" y="242" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1575511346461" />
     <state x="655" y="342" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574819827339" />
     <state x="873" y="404" key="com.intellij.ide.util.TipDialog/2560.147.1366.768/0.174.2560.702@0.174.2560.702" timestamp="1575372832242" />
     <state x="1048" y="439" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1575326945914">

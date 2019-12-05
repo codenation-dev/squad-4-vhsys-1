@@ -6,12 +6,48 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-include 'listLogs.php';
+if (!empty($_POST)) {
+    $curl = curl_init();
 
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/logs/search?select=level,log,status,events&ambience=".$_POST['ambience']."&order=".$_POST['order'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "Accept: application/json",
+            "Accept-Encoding: gzip, deflate",
+            "Authorization: bearer " . $_SESSION['Token'],
+            "Cache-Control: no-cache",
+            "Connection: keep-alive",
+            "Content-Type: application/x-www-form-urlencoded",
+            "Host: backacelera.codeinfinity.com.br",
+            "Postman-Token: 2f7e2ccb-46c9-41aa-99ae-16b234b4c418,3fbbae0e-82b0-40a8-84e5-7a29d9a7a021",
+            "User-Agent: PostmanRuntime/7.20.1",
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        $err;
+    } else {
+        $response = json_decode($response, TRUE);
+    }
+} else {
+    include 'listLogs.php';
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="br">
+<html lang="br" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -40,44 +76,44 @@ include 'listLogs.php';
         Seu Token &eacute;: <div class="card" style="border: 0px; color: #5a6268"> <?php echo $_SESSION['Token']; ?></div>
     </div>
     <br>
-    <br>
-    <div  style="text-align: left; float: left; padding-left: 20px; padding-right: 20px;">
-        <p>
-            <select class="form-control" id="ambience" name="ambience">
-                <option value="">Produ&ccedil;&atilde;o </option>
-                <option value="">Homologa&ccedil;&atilde;o</option>
-                <option value="">Desenvolvimento</option>
-            </select>
-        </p>
-    </div>
-    <div  style="text-align: left; float: left ; padding-left: 20px; padding-right: 20px;">
-        <p>
-            <select class="form-control" id="order" name="order">
-                <option value="">Ordenar por: </option>
-                <option value="">Level</option>
-                <option value="">Eventos</option>
-            </select>
-        </p>
-    </div>
-    <div  style="text-align: left; float: left ; padding-left: 20px; padding-right: 20px;">
-        <p>
-            <select class="form-control" id="search" name="search">
-                <option value="">Burcar por: </option>
-                <option value="">Level</option>
-                <option value="">Descri&ccedil;&atilde;o</option>
-                <option value="">Origem</option>
-            </select>
-        </p>
-    </div>
-    <div style=" float: left">
-        <div class="input-group" style="width: 50vh; padding-left: 20px; padding-right: 20px;">
-            <input class="form-control" type="search" placeholder="Search" >
-            <div class="input-group-append" >
-                <div class="input-group-text"><i class="fa fa-search"></i></div>
+    <hr>
+    <form name="search" method="POST" action="logs.php">
+        <div  style="text-align: left; float: left; padding-left: 20px; padding-right: 20px;">
+            <p>
+                <select class="form-control" id="ambience" name="ambience">
+                    <option value="">Origem:  </option>
+                    <option value="Produção">Produ&ccedil;&atilde;o </option>
+                    <option value="Homologação">Homologa&ccedil;&atilde;o</option>
+                    <option value="Desenvolvimento">Desenvolvimento</option>
+                </select>
+            </p>
+        </div>
+        <div  style="text-align: left; float: left ; padding-left: 20px; padding-right: 20px;">
+            <p>
+                <select class="form-control" id="order" name="order">
+                    <option value="">Ordenar por: </option>
+                    <option value="level">Level</option>
+                    <option value="events">Eventos</option>
+                </select>
+            </p>
+        </div>
+        <div  style="text-align: left; float: left ; padding-left: 20px; padding-right: 20px;">
+            <p style=" float: left">
+                <select class="form-control" name="search">
+                    <option value="">Burcar por: </option>
+                    <option value="level">Level</option>
+                    <option value="log">Descri&ccedil;&atilde;o</option>
+                    <option value="ambience">Origem</option>
+                </select>
+            </p>
+            <div style=" float: right">
+                <div class="input-group" style="width: 50vh; padding-left: 20px; padding-right: 20px;">
+                    <input class="form-control" type="search" placeholder="Search">
+                    <input type="submit"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <br>
+    </form>
     <br>
     <div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
         <table class="table table-striped">
@@ -91,8 +127,9 @@ include 'listLogs.php';
             </tr>
             </thead>
             <tbody>
-
+            <?php print_r($response); ?>
         <?php foreach($response['data'] as $result){ ?>
+
            <tr style="text-align: center">
                 <th scope="row"><?php echo $result['level'] ?></th>
                 <td><?php echo $result['log'] ?></td>
@@ -123,7 +160,7 @@ include 'listLogs.php';
                                         <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $result['log'] ?></div>
                                         <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $result['level'] ?><br><br>
                                             <b>Eventos</b><br><?php echo $result['events'] ?><br><br>
-                                            <b>Usu&aacute;rio:</b><br><?php echo $result['user_created'] ?></div>
+                                            <b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
                                     </div>
                                 </div>
                             </div>

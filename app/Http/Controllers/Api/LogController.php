@@ -8,6 +8,7 @@ use App\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\JWTAuth;
 
 class LogController extends Controller
@@ -21,7 +22,14 @@ class LogController extends Controller
 
     public function index (string $order = 'level')
     {
-        return response()->json($this->log->orderBy($order)->paginate(10), 200);
+
+        $teste =  DB::table('logs')
+            ->join('users', 'logs.user_created', '=', 'users.id')
+            ->select('users.name', 'logs.*')
+            ->orderBy($order)
+            ->paginate(10);
+
+        return response()->json($teste, 200);
     }
 
     public function show (Log $id)

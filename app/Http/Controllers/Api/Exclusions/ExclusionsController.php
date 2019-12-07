@@ -6,6 +6,7 @@ use App\Exclusion;
 use App\Http\Requests\ExclusionsRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ExclusionsController extends Controller
 {
@@ -17,8 +18,14 @@ class ExclusionsController extends Controller
 
     }
     public function show(){
+
+        $teste =  DB::table('exclusions')
+            ->join('users', 'exclusions.id_user', '=', 'users.id')
+            ->select('users.name', 'exclusions.*')
+            ->get();
+
         return response()->json([
-            'message' => Exclusion::paginate(10),
+            'data' => $teste,
             'status' => 'ok',
         ], 200);
     }

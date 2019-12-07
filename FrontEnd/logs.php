@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -6,44 +6,8 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-if (!empty($_POST)) {
-    $curl = curl_init();
+include 'search.php';
 
-    curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/logs/search?select=level,log,status,events&ambience=".$_POST['ambience']."&order=".$_POST['order'],
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "Accept: application/json",
-            "Accept-Encoding: gzip, deflate",
-            "Authorization: bearer " . $_SESSION['Token'],
-            "Cache-Control: no-cache",
-            "Connection: keep-alive",
-            "Content-Type: application/x-www-form-urlencoded",
-            "Host: backacelera.codeinfinity.com.br",
-            "Postman-Token: 2f7e2ccb-46c9-41aa-99ae-16b234b4c418,3fbbae0e-82b0-40a8-84e5-7a29d9a7a021",
-            "User-Agent: PostmanRuntime/7.20.1",
-            "cache-control: no-cache"
-        ),
-    ));
-
-    $response = curl_exec($curl);
-    $err = curl_error($curl);
-
-    curl_close($curl);
-
-    if ($err) {
-        $err;
-    } else {
-        $response = json_decode($response, TRUE);
-    }
-} else {
-    include 'listLogs.php';
-}
 ?>
 
 <!DOCTYPE html>
@@ -62,12 +26,13 @@ if (!empty($_POST)) {
 <body>
 <div style="height: 100%">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 100px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="height: 120px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
-            <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
+                <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <div style="text-align:right;" ><a href="cadastroLogs.php" style="color: white; text-decoration:none">Cadastrar novo Erro</a></div>
+            <div style="text-align:right;" ><a href="cadastroLogs.php" style="color: white; text-decoration:none">Cadastrar novo Log</a><br>
+                <a href="logsExcluidos.php" style="color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;do</a></div>
         </div>
     </div>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
@@ -77,7 +42,7 @@ if (!empty($_POST)) {
     </div>
     <br>
     <hr>
-    <form name="search" method="POST" action="logs.php">
+    <form name="search" method="GET" action="">
         <div  style="text-align: left; float: left; padding-left: 20px; padding-right: 20px;">
             <p>
                 <select class="form-control" id="ambience" name="ambience">
@@ -108,47 +73,46 @@ if (!empty($_POST)) {
             </p>
             <div style=" float: right">
                 <div class="input-group" style="width: 50vh; padding-left: 20px; padding-right: 20px;">
-                    <input class="form-control" type="search" placeholder="Search">
+                    <input class="form-control" type="search" placeholder="Search" name="search_name">
                     <input type="submit"></div>
-                </div>
             </div>
         </div>
-    </form>
-    <br>
-    <div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
-        <table class="table table-striped">
-            <thead>
+</div>
+</form>
+<br>
+<div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
+    <table class="table table-striped">
+        <thead>
+        <tr style="text-align: center">
+            <th scope="col">#</th>
+            <th scope="col">Level</th>
+            <th scope="col">Descri&ccedil;&atilde;o</th>
+            <th scope="col">Eventos</th>
+            <th scope="col">Detalhes</th>
+            <th scope="col">Arquivar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--               --><?php //var_dump($response); ?>
+        <?php foreach($response as $result){ ?>
+
             <tr style="text-align: center">
-                <th scope="col">#</th>
-                <th scope="col">Level</th>
-                <th scope="col">Descri&ccedil;&atilde;o</th>
-                <th scope="col">Eventos</th>
-                <th scope="col">Detalhes</th>
-                <th scope="col">Arquivar</th>
-            </tr>
-            </thead>
-            <tbody>
-
-        <?php foreach($response['data'] as $result){ ?>
-
-           <tr style="text-align: center">
-               <td>
-                   <div class="input-group">
-                       <form action="delete.php" method="POST"  >
-                           <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                           <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
-                       </form>
-                   </div>
-               </td>
+                <td>
+                    <div class="input-group">
+                        <form action="delete.php" method="POST"  >
+                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
+                        </form>
+                    </div>
+                </td>
                 <th scope="row"><?php echo $result['level'] ?></th>
                 <td><?php echo $result['log'] ?></td>
-               <td><?php echo $result['events'] ?></td>
+                <td><?php echo $result['events'] ?></td>
                 <td>
                     <div class="container">
-                       <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
-                           <i class="fa fa-plus"></i></a>
+                        <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
+                            <i class="fa fa-plus"></i></a>
                     </div>
-
                     <!-- Modal -->
                     <div class="modal fade" id="myModal<?php echo $result['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -181,25 +145,27 @@ if (!empty($_POST)) {
                     </div>
                     <!-- Fim Modal -->
                 </td>
-               <td>
-                   <div class="input-group">
-                       <form action="arquivar.php" method="POST"  >
-                           <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                           <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-archive"></i></button>
-                       </form>
-                   </div>
-               </td>
+                <td>
+                    <div class="input-group">
+                        <form action="arquivar.php" method="POST"  >
+                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-archive"></i></button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         <?php } ?>
-            </tbody>
-        </table>
-        <br>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <br>
+</div>
+<div>
+    <div style="height: 100px; background-color: #17a2b8; text-align: center">
+        <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
     </div>
-    <div>
-        <div style="height: 100px; background-color: #17a2b8; text-align: center">
-            <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
-        </div>
-    </div>
+</div>
 </div>
 </body>
 </html>

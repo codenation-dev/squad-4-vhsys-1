@@ -69,7 +69,7 @@ if (!isset($_SESSION['Token'])) {
                 <label>Ambiente</label>
                 <p>
                     <select class="form-control" id="ambience" name="ambience">
-                        <option value="Produca">Produ&ccedil;&atilde;o </option>
+                        <option value="Producao">Produ&ccedil;&atilde;o </option>
                         <option value="Homologacao">Homologa&ccedil;&atilde;o</option>
                         <option value="Desenvolvimento">Desenvolvimento</option>
                     </select>

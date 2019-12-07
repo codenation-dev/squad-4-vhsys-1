@@ -22,7 +22,6 @@ class LogController extends Controller
 
     public function index (string $order = 'level')
     {
-
         $teste =  DB::table('logs')
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
@@ -124,19 +123,37 @@ class LogController extends Controller
     public function search(Request $request)
     {
 
-        $query = 'SELECT * FROM logs';
+
+        $data = Log::all();
         if (array_key_exists('select', ($request->all()))) {
-            $query = 'SELECT ' . $request['select'] . ' FROM logs';
+            $select = explode(',',$request['select']);
+
+            $data =  DB::table('logs')
+                ->join('users', 'logs.user_created', '=', 'users.id')
+                ->select('users.name', 'logs.' . $select)
+                ->get();
+
+        }
+        if (array_key_exists('search', ($request->all()))) {
+            $data =  DB::table('logs')->where($request['search'],'LIKE',$request['search_name'])->get();
         }
 
         if (array_key_exists('ambience', ($request->all()))) {
-            $query = $query . " WHERE ambience = '" . $request['ambience'] . "'";
+            $data =  DB::table('logs')->where ('ambience','=',$request['ambience'])->get();
+
         }
         if (array_key_exists('order', ($request->all()))) {
-            $query = $query . ' ORDER BY ' . $request['order'];
+            $data =  DB::table('logs')->orderBy ($request['order'])->get();
         }
+//        e
+//        lse{
+//            $data =  DB::table('logs')
+//                ->where($request['search'],'LIKE',$request['search_name'])
+//                ->orWhere ('ambience','=',$request['ambience'])
+//                ->orderBy ($request['order'])->get();
+//        }
 
-        return response()->json($this->log->search($query));
+        return response()->json($data);
     }
 
 

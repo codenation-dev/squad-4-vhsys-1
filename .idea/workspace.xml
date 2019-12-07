@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8954476d-05e0-46b2-96f6-c7f4680a950a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.testing" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/UserTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/LoginJwtController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/Auth/LoginJwtController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/LogFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/LogFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/LogTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/LogTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UserTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +314,7 @@
       <workItem from="1575513371958" duration="1367000" />
       <workItem from="1575594722895" duration="1023000" />
       <workItem from="1575683394717" duration="912000" />
-      <workItem from="1575721217375" duration="13343000" />
+      <workItem from="1575721217375" duration="14575000" />
     </task>
     <task id="LOCAL-00001" summary="add Doc">
       <created>1572989024525</created>

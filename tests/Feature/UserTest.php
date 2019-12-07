@@ -7,15 +7,23 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    public function testRequestTokenUser() {
+    public function testRequestTokenUser()
+    {
+        $userRandom = \App\User::all()->random();
+
         $user = [
-            'email' => 'joaao@joao.com',
-            'password' => '12345'
+            'email' => $userRandom->email,
+            'password' => '1234567'
         ];
 
         $response = $this->post(route('requestToken'), $user);
         $response->assertStatus(200);
     }
 
+    public function testRegisterUser()
+    {
+        $user = factory(\App\User::class)->make();
 
+
+    }
 }

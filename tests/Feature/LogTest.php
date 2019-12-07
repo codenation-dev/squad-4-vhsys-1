@@ -13,7 +13,8 @@ class LogTest extends TestCase
     {
         parent::setUp();
 
-        $userRandom = factory(\App\User::class)->create();
+        $userRandom = \App\User::all()->random();
+        //$userRandom = factory(\App\User::class)->create();
 
         $user = [
             'email' => $userRandom->email,

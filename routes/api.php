@@ -52,7 +52,7 @@ Route::group(['middleware' => ['cors']], function () {
             });
 
             Route::prefix('/exclusions')->group(function() {
-                Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('create_logs');
+                Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('delete_logs');
                 Route::get('/list', 'Exclusions\\ExclusionsController@show')->name('list_exclusions');
             });
 

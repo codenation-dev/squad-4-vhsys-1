@@ -22,6 +22,7 @@ class CreateTableUsers extends Migration
             $table->rememberToken()->nullable($value = true);
             $table->integer('admin')->default(0);
             $table->timestamps();
+            $table->softDeletes();
             $table->integer('id_user_alteracao')->nullable($value = true);
 
         });

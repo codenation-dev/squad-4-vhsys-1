@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Mockery\Exception;
 
 class UserController extends Controller
 {
@@ -19,10 +20,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'status' => 'OK',
-            'data' => User::paginate(100)
-        ]);
+        try{
+            return response()->json([
+                'status' => 'OK',
+                'data' => User::paginate(100)
+            ]);
+        }catch (\Throwable $e){
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
+
     }
 
     /**
@@ -54,10 +63,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return response()->json([
-            'status' => 'OK',
-            'data' => User::findOrFail($id)
-        ]);
+        try {
+            return response()->json([
+                'status' => 'OK',
+                'data' => User::findOrFail($id)
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
     }
 
     /**
@@ -80,20 +96,25 @@ class UserController extends Controller
      */
     public function update(UsersRequest $request, $id)
     {
-        $credentials = $request->all(['name', 'password', 'email']);
-        $user = User::where('id', $id)->first();
+        try{
+            $credentials = $request->all(['name', 'password', 'email']);
+            $user = User::where('id', $id)->first();
             $user->name = $credentials['name'];
             $user->email = $credentials['email'];
             $user->password = Hash::make($credentials['password']);
-        if ($user->save()) {
+            if ($user->save()) {
+                return response()->json([
+                    'status' => 'OK',
+                    'Message' => 'Update Successfully'], 201);
+            }
+
+        }catch (\Exception $e) {
             return response()->json([
-                'status' => 'OK',
-                'Message' => 'Update Successfully'], 201);
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
         }
-        return response()->json([
-            'status' => 'ERROR',
-            'Message' => 'Error Registering'
-        ], 200);
+
     }
 
     /**
@@ -104,22 +125,43 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user =  User::findOrFail($id);
+        try{
+            $user = Auth::user();
+            $data = [
+                'value'=> json_encode($user),
+                'id_user' => $user['id']
+            ];
 
-        $exclusion = new ExclusionsController();
-        $user = Auth::user();
-        $data = [
-            'value'=> json_encode($user),
-            'id_user' => $user['id']
-        ];
+            $user =  User::where('id','=', $id)->first();
 
-        $exclusion->create($data);
+            $exclusion = new ExclusionsController();
 
+            $exclusion->create($data);
 
-        $user->delete();
-        return response()->json([
-            'status' => 'OK',
-            'Message' => "Deleted"
-        ]);
+            $user->delete();
+            return response()->json([
+                'status' => 'OK',
+                'Message' => "Deleted"
+            ]);
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' =>$e
+            ], 503);
+        }
+
+    }
+    public function list_user_deleted(){
+        try{
+            return response()->json([
+                'status' => 'OK',
+                'Message' => User::onlyTrashed()->get()
+            ], 200);
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
     }
 }

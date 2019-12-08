@@ -126,6 +126,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
+<<<<<<< HEAD
 
             $user =  User::findOrFail($id);
             
@@ -135,6 +136,17 @@ class UserController extends Controller
                 'value'=> json_encode($user),
                 'id_user' => $user['id']
             ];
+=======
+            $user = Auth::user();
+            $data = [
+                'value'=> json_encode($user),
+                'id_user' => $user['id']
+            ];
+
+            $user =  User::where('id','=', $id)->first();
+
+            $exclusion = new ExclusionsController();
+>>>>>>> d63e72e20f18a18fec36df3da4ea44a3041838c3
 
             $exclusion->create($data);
 
@@ -150,5 +162,21 @@ class UserController extends Controller
             ], 503);
         }
 
+<<<<<<< HEAD
+=======
+    }
+    public function list_user_deleted(){
+        try{
+            return response()->json([
+                'status' => 'OK',
+                'Message' => User::onlyTrashed()->get()
+            ], 200);
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
+>>>>>>> d63e72e20f18a18fec36df3da4ea44a3041838c3
     }
 }

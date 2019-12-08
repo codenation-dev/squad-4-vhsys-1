@@ -20,12 +20,7 @@ Route::group(['middleware' => ['cors']], function () {
     Route::prefix('v1')->namespace('Api')->group(function () {
         //public routes
         Route::post('requestToken', 'Auth\\LoginJwtController@login')->name('requestToken');
-        Route::post('registerUser', 'Auth\\LoginJwtController@registrar')->name('registerUser');
-
-
-        Route::get('/debug-sentry', function () {
-            throw new Exception('My first Sentry error!');
-        });
+        Route::post('registerUser', 'Auth\\LoginJwtController@register')->name('registerUser');
 
         //FIM PUBLIC ROUTES
 
@@ -34,6 +29,7 @@ Route::group(['middleware' => ['cors']], function () {
             //ROUTES USERS
             Route::prefix('users')->group(function () {
                 Route::get('list', 'Users\\UserController@index')->name('list');
+                Route::get('listdeleted', 'Users\\UserController@list_user_deleted')->name('listdeleted');
                 Route::post('list/{id}', 'Users\\UserController@show')->name('listuser');
                 Route::delete('delete/{id}', 'Users\\UserController@destroy')->name('delete');
                 Route::put('update/{id}', 'Users\\UserController@update')->name('update');
@@ -46,6 +42,7 @@ Route::group(['middleware' => ['cors']], function () {
                 Route::get('/list/{id}', 'LogController@show')->name('single_logs');
                 Route::post('/create', 'LogController@create')->name('create_logs');
                 Route::post('/tofile/{id}', 'LogController@tofile')->name('tofile');
+                Route::get('/filled', 'LogController@filled')->name('filled');
                 Route::get('/search', 'LogController@search')->name('search');
                 Route::delete('delete/{id}', 'LogController@destroy')->name('delete');
 

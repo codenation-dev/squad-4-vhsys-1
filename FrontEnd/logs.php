@@ -26,13 +26,14 @@ include 'search.php';
 <body>
 <div style="height: 100%">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 120px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="height: 145px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
                 <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
             <div style="text-align:right;" ><a href="cadastroLogs.php" style="color: white; text-decoration:none">Cadastrar novo Log</a><br>
-                <a href="logsExcluidos.php" style="color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;do</a></div>
+                <a href="logsExcluidos.php" style="color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a><br>
+                <a href="logsArquivados.php" style="color: #FFFFFF; text-decoration:none">Logs Arquivados</a></div>
         </div>
     </div>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
@@ -93,9 +94,9 @@ include 'search.php';
         </tr>
         </thead>
         <tbody>
-        <!--               --><?php //var_dump($response); ?>
-        <?php foreach($response as $result){ ?>
 
+        <?php foreach($response as $result){ ?>
+            <?php print_r($result) ?>
             <tr style="text-align: center">
                 <td>
                     <div class="input-group">
@@ -145,6 +146,7 @@ include 'search.php';
                     </div>
                     <!-- Fim Modal -->
                 </td>
+                <?php if ($result['admin']=1) { ?>
                 <td>
                     <div class="input-group">
                         <form action="arquivar.php" method="POST"  >
@@ -153,6 +155,7 @@ include 'search.php';
                         </form>
                     </div>
                 </td>
+                <?php } ?>
             </tr>
         <?php } ?>
         </tbody>

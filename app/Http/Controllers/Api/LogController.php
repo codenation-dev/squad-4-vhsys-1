@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 use Tymon\JWTAuth\JWTAuth;
 
 class LogController extends Controller
@@ -20,45 +21,62 @@ class LogController extends Controller
         $this->log = $log;
     }
 
-    public function index (string $order = 'level')
+    public function index(string $order = 'level')
     {
-        $teste =  DB::table('logs')
-            ->join('users', 'logs.user_created', '=', 'users.id')
-            ->select('users.name', 'logs.*')
-            ->orderBy($order)
-            ->paginate(10);
+        try {
+            $teste = DB::table('logs')
+                ->join('users', 'logs.user_created', '=', 'users.id')
+                ->select('users.name','user.admin', 'logs.*')
+                ->orderBy($order)
+                ->paginate(10);
 
-        return response()->json($teste, 200);
+            return response()->json($teste, 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
+
     }
 
-    public function show (Log $id)
+    public function show(Log $id)
     {
-        $data = ['data' => $id];
-        return response()->json($data, 200);
+        try {
+            $data = ['data' => $id];
+            return response()->json($data, 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
+
     }
 
-    public function create (logRequest $request)
+    public function create(logRequest $request)
     {
         $request->validated();
         $user = Auth::user();
 
-        try{
-
+        try {
             $logData = $request->all();
             $logData['user_created'] = $user['id'];
 
 
-           $this->log->create($logData);
+            $this->log->create($logData);
 
             return response()->json([
-                'message' => 'Log criado com sucesso!',
+                'message' => 'Successfully created log!',
                 'status' => 'OK',
             ], 201);
 
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Não foi possível criar o log!',
-                'status' => 'ERRO',
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
     }
@@ -69,20 +87,33 @@ class LogController extends Controller
             if ($log = Log::find($id)) {
                 $log->delete();
                 return response()->json([
-                    'message' => 'Sucesso ao arquivar Log!',
+                    'message' => 'Success in archiving the log!',
                     'status' => 'OK',
-                ], 503);
+                ], 201);
             } else {
                 return response()->json([
-                    'message' => 'Erro ao localizar log para arquivar!',
+                    'message' => 'Error locating log to archive!',
                     'status' => 'ERRO',
-                ], 503);
+                ], 404);
             }
 
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Erro ao arquivar o log!',
-                'status' => 'ERRO',
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
+        }
+    }
+    public function filled(){
+        try{
+            return response()->json([
+                'status' => 'OK',
+                'Message' => Log::onlyTrashed()->get()
+            ], 200);
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
     }
@@ -102,20 +133,20 @@ class LogController extends Controller
 
                 $log->forceDelete();
                 return response()->json([
-                    'message' => 'Sucesso ao deletar o  Log!',
+                    'message' => 'Success in deleting log!',
                     'status' => 'OK',
-                ], 503);
+                ], 201);
             } else {
                 return response()->json([
-                    'message' => 'Erro ao deletar o log !',
+                    'message' => 'log not found !',
                     'status' => 'ERRO',
-                ], 503);
+                ], 404);
             }
 
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Erro ao deletar o log!',
-                'status' => 'ERRO',
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
     }
@@ -126,24 +157,24 @@ class LogController extends Controller
 
         $data = Log::all();
         if (array_key_exists('select', ($request->all()))) {
-            $select = explode(',',$request['select']);
+            $select = explode(',', $request['select']);
 
-            $data =  DB::table('logs')
+            $data = DB::table('logs')
                 ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name', 'logs.' . $select)
+                ->select('users.name','user.admin','logs.' . $select)
                 ->get();
 
         }
         if (array_key_exists('search', ($request->all()))) {
-            $data =  DB::table('logs')->where($request['search'],'LIKE',$request['search_name'])->get();
+            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
         }
 
         if (array_key_exists('ambience', ($request->all()))) {
-            $data =  DB::table('logs')->where ('ambience','=',$request['ambience'])->get();
+            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
 
         }
         if (array_key_exists('order', ($request->all()))) {
-            $data =  DB::table('logs')->orderBy ($request['order'])->get();
+            $data = DB::table('logs')->orderBy($request['order'])->get();
         }
 //        e
 //        lse{

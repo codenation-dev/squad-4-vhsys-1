@@ -9,43 +9,59 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use mysql_xdevapi\Exception;
+use Exception;
 
 class LoginJwtController extends Controller
 {
     public function login(Request $request)
     {
-        $credentials = $request->all(['email', 'password']);
+        try {
+            $credentials = $request->all(['email', 'password']);
 
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
-        }
-        $user = User::where('email','=',$request['email'])->first();
-        return response()->json(
-            [
-                'status' => 'OK',
-                'user' => $user['name'],
-                'token' => $token
-            ], 200);
-    }
-
-    public function registrar(UsersRequest $request)
-    {
-        if (User::where('email', $request['email'])->first()) {
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
+            }
+            $user = User::where('email', '=', $request['email'])->first();
+            return response()->json(
+                [
+                    'status' => 'OK',
+                    'user' => $user['name'],
+                    'token' => $token
+                ], 200);
+        } catch (Exception $e) {
             return response()->json([
                 'status' => 'ERROR',
-                'Message' => 'Registered User'], 200);
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
         }
-        $credentials = $request->all(['name', 'password', 'email']);
+    }
 
-        if (User::create(['name' => $credentials['name'], 'email' => $credentials['email'], 'password' => Hash::make($credentials['password']),])) {
+    public function register(UsersRequest $request)
+    {
+        try {
+            if (User::where('email', $request['email'])->first()) {
+                return response()->json([
+                    'status' => 'ERROR',
+                    'Message' => 'Registered User'
+                ], 202);
+            }
+            $credentials = $request->all(['name', 'password', 'email']);
+
+            if (User::create([
+                'name' => $credentials['name'],
+                'email' => $credentials['email'],
+                'password' => Hash::make($credentials['password']),
+            ])) {
+                return response()->json([
+                    'status' => 'OK',
+                    'Message' => 'Registered Successfully'
+                ], 201);
+            }
+        } catch (Exception $e) {
             return response()->json([
-                'status' => 'OK',
-                'Message' => 'Registered Successfully'], 201);
+                'status' => 'ERROR',
+                'Message' => 'Error not reported, consult administrator'
+            ], 503);
         }
-        return response()->json([
-            'status' => 'ERROR',
-            'Message' => 'Error Registering'
-        ], 200);
     }
 }

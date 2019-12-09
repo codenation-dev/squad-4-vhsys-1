@@ -26,11 +26,7 @@ class LogController extends Controller
         try {
             $teste = DB::table('logs')
                 ->join('users', 'logs.user_created', '=', 'users.id')
-<<<<<<< HEAD
                 ->select('users.name','user.admin', 'logs.*')
-=======
-                ->select('users.name', 'logs.*')
->>>>>>> d63e72e20f18a18fec36df3da4ea44a3041838c3
                 ->orderBy($order)
                 ->paginate(10);
 

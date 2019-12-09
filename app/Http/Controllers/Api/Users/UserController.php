@@ -21,9 +21,11 @@ class UserController extends Controller
     public function index()
     {
         try{
+            $data = User::all();
+
             return response()->json([
                 'status' => 'OK',
-                'data' => User::paginate(100)
+                'data' => $data
             ]);
         }catch (\Throwable $e){
             return response()->json([
@@ -126,17 +128,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         try{
-<<<<<<< HEAD
-
-            $user =  User::findOrFail($id);
-            
-            $exclusion = new ExclusionsController();
-            $user = Auth::user();
-            $data = [
-                'value'=> json_encode($user),
-                'id_user' => $user['id']
-            ];
-=======
             $user = Auth::user();
             $data = [
                 'value'=> json_encode($user),
@@ -146,7 +137,6 @@ class UserController extends Controller
             $user =  User::where('id','=', $id)->first();
 
             $exclusion = new ExclusionsController();
->>>>>>> d63e72e20f18a18fec36df3da4ea44a3041838c3
 
             $exclusion->create($data);
 
@@ -162,14 +152,14 @@ class UserController extends Controller
             ], 503);
         }
 
-<<<<<<< HEAD
-=======
     }
     public function list_user_deleted(){
         try{
+            $data = User::onlyTrashed()->get();
+
             return response()->json([
                 'status' => 'OK',
-                'Message' => User::onlyTrashed()->get()
+                'data' => $data
             ], 200);
         }catch (\Exception $e) {
             return response()->json([
@@ -177,6 +167,5 @@ class UserController extends Controller
                 'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
->>>>>>> d63e72e20f18a18fec36df3da4ea44a3041838c3
     }
 }

@@ -26,14 +26,28 @@ include 'listExcluidos.php';
 <body>
 <div style="height: 100%">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 100px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="height: 160px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
-            <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
+                <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <div style="text-align:right;" ><a href="cadastroLogs.php" style="color: white; text-decoration:none">Cadastrar novo Erro</a></div>
+            <hr color="#FFFFFF">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a2b8 ">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Logs</a>
+                        <a class="nav-item nav-link active" href="logs.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs</a>
+                        <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
+                        <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
+                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar novo Log</a>
+                        <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
+                    </div>
+                </div>
+            </nav>
+
         </div>
     </div>
+    <br>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
         Ol&aacute; <?php echo $_SESSION['user']; ?>,
         <br>
@@ -59,7 +73,7 @@ include 'listExcluidos.php';
 
         <?php foreach($response['data'] as $key => $result){ ?>
             <?php $teste = json_decode($result['value']); ?>
-            <?php print_r($teste) ?>
+
            <tr style="text-align: center">
                 <th scope="row"><?php if (!isset($teste->level)) { echo "User"; } else { echo $teste->level; } ?></th>
                 <td><?php if (!isset($teste->log)) { echo "User: ".$teste->name . ", Email: ".$teste->email; } else { echo $teste->log; } ?></td>
@@ -107,7 +121,6 @@ include 'listExcluidos.php';
         </table>
         <br>
         <hr>
-        <a href="logs.php" class="btn btn-outline-secondary">Voltar</a>
         <br>
     </div>
     <div>

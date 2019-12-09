@@ -51,6 +51,7 @@ class LoginJwtController extends Controller
                 'name' => $credentials['name'],
                 'email' => $credentials['email'],
                 'password' => Hash::make($credentials['password']),
+
             ])) {
                 return response()->json([
                     'status' => 'OK',

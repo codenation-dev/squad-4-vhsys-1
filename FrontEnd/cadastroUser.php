@@ -1,6 +1,7 @@
 <?php
 
 $curl = curl_init();
+
 curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 curl_setopt_array($curl, array(
@@ -11,7 +12,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "name=". $_POST['nome']."&email=".$_POST['email']."&password=".$_POST['password'],
+  CURLOPT_POSTFIELDS => "name=". $_POST['nome']."&email=".$_POST['email']."&password=".$_POST['password']."&admin=".$_POST['admin'],
   CURLOPT_HTTPHEADER => array(
     "Accept: application/json",
     "Content-Type: application/x-www-form-urlencoded",
@@ -22,6 +23,8 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
+
+print_r($_POST);die;
 
 curl_close($curl);
 

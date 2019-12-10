@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\logRequest;
 use App\Log;
+use App\Services\Contracts\LogServiceInterface;
+use App\Services\LogService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +16,11 @@ use Tymon\JWTAuth\JWTAuth;
 
 class LogController extends Controller
 {
-    private $log;
+    private $logService;
 
-    public function __construct(Log $log)
+    public function __construct(LogServiceInterface $logService)
     {
-        $this->log = $log;
+        $this->logService = $logService;
     }
 
     public function index(string $order = 'level')
@@ -60,6 +62,8 @@ class LogController extends Controller
     {
         $request->validated();
         $user = Auth::user();
+
+        dd($user);
 
         try {
             $logData = $request->all();
@@ -153,38 +157,12 @@ class LogController extends Controller
 
     public function search(Request $request)
     {
+        $queryUrl = $request->query();
+        $data = $this->logService->search($queryUrl);
 
-
-        $data = Log::all();
-        if (array_key_exists('select', ($request->all()))) {
-            $select = explode(',', $request['select']);
-
-            $data = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin','logs.' . $select)
-                ->get();
-
-        }
-        if (array_key_exists('search', ($request->all()))) {
-            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
-        }
-
-        if (array_key_exists('ambience', ($request->all()))) {
-            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
-
-        }
-        if (array_key_exists('order', ($request->all()))) {
-            $data = DB::table('logs')->orderBy($request['order'])->get();
-        }
-//        e
-//        lse{
-//            $data =  DB::table('logs')
-//                ->where($request['search'],'LIKE',$request['search_name'])
-//                ->orWhere ('ambience','=',$request['ambience'])
-//                ->orderBy ($request['order'])->get();
-//        }
-
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ], 200);
     }
 
 

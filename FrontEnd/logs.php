@@ -40,7 +40,9 @@ include 'listLogs.php';
                         <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
                         <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
                         <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
-                        <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
+                        <?php if ($_SESSION['admin'] == 1 ) { ?>
+                            <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
+                        <?php } ?>
                     </div>
                 </div>
             </nav>
@@ -96,27 +98,32 @@ include 'listLogs.php';
     <table class="table table-striped">
         <thead>
         <tr style="text-align: center">
-            <th scope="col">#</th>
+            <?php if ($_SESSION['admin'] == 1 ) { ?>
+                <th scope="col">#</th>
+            <?php } ?>
             <th scope="col">Level</th>
             <th scope="col">Descri&ccedil;&atilde;o</th>
             <th scope="col">Eventos</th>
             <th scope="col">Detalhes</th>
-            <th scope="col">Arquivar</th>
+            <?php if ($_SESSION['admin'] == 1 ) { ?>
+                <th scope="col">Arquivar</th>
+            <?php } ?>
         </tr>
         </thead>
         <tbody>
-
         <?php foreach($response['data'] as $key => $result){ ?>
-        <?php print_r($result) ?>
+
             <tr style="text-align: center">
-                <td>
-                    <div class="input-group">
-                        <form action="delete.php" method="POST"  >
-                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
-                        </form>
-                    </div>
-                </td>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <td>
+                        <div class="input-group">
+                            <form action="delete.php" method="POST"  >
+                                <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                                <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                <?php } ?>
                 <th scope="row"><?php echo $result['level'] ?></th>
                 <td><?php echo $result['log'] ?></td>
                 <td><?php echo $result['events'] ?></td>
@@ -149,7 +156,7 @@ include 'listLogs.php';
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
                                         <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $result['status'] ?></div>
-                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
+                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['user']['name'] ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -157,15 +164,15 @@ include 'listLogs.php';
                     </div>
                     <!-- Fim Modal -->
                 </td>
-                <?php if ($result['admin']=1) { ?>
-                <td>
-                    <div class="input-group">
-                        <form action="arquivar.php" method="POST"  >
-                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-archive"></i></button>
-                        </form>
-                    </div>
-                </td>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <td>
+                        <div class="input-group">
+                            <form action="arquivar.php" method="POST"  >
+                                <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                                <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-archive"></i></button>
+                            </form>
+                        </div>
+                    </td>
                 <?php } ?>
             </tr>
         <?php } ?>

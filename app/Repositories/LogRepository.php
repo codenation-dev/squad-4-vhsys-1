@@ -36,4 +36,10 @@ class LogRepository implements LogRepositoryInterface
 
         return $data->get();
     }
+
+    public function find(int $id){
+        return $this->model::find($id);
+    }
+
+
 }

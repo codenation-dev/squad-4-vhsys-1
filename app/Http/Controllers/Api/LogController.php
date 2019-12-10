@@ -7,6 +7,7 @@ use App\Http\Requests\logRequest;
 use App\Log;
 use App\Services\Contracts\LogServiceInterface;
 use App\Services\LogService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -43,19 +44,18 @@ class LogController extends Controller
 
     }
 
-    public function show(Log $id)
+    public function show(int $id)
     {
         try {
-            $data = ['data' => $id];
+            $log = $this->logService->findById($id);
+            $data = ['data' => $log];
+
             return response()->json($data, 200);
-
-        } catch (\Exception $e) {
+        } catch (ModelNotFoundException $e) {
             return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
+                'Message' => 'Not found log'
+            ], 404);
         }
-
     }
 
     public function create(logRequest $request)
@@ -164,6 +164,4 @@ class LogController extends Controller
             'data' => $data
         ], 200);
     }
-
-
 }

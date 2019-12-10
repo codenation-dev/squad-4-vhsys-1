@@ -41,5 +41,9 @@ class LogRepository implements LogRepositoryInterface
         return $this->model::find($id);
     }
 
+    public function create(array $log){
+        $this->model->create($log);
+    }
+
 
 }

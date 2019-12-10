@@ -22,7 +22,7 @@ class LoginJwtController extends Controller
                 return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
             }
             $user = User::where('email', '=', $request['email'])->first();
-            print_r($user['admin']); die;
+
             return response()->json(
                 [
                     'status' => 'OK',

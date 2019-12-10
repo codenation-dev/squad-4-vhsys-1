@@ -44,45 +44,28 @@ class LogController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $queryUrl = $request->query();
+        $data = $this->logService->search($queryUrl);
+
+        return response()->json($data['data'], $data['code']);
+    }
+
     public function show(int $id)
     {
-        try {
-            $log = $this->logService->findById($id);
-            $data = ['data' => $log];
+        $data = $this->logService->findById($id);
 
-            return response()->json($data, 200);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                'Message' => 'Not found log'
-            ], 404);
-        }
+        return response()->json(['data' => $data['data']], $data['code']);
     }
 
     public function create(logRequest $request)
     {
         $request->validated();
-        $user = Auth::user();
 
-        dd($user);
+        $data = $this->logService->create($request->all());
 
-        try {
-            $logData = $request->all();
-            $logData['user_created'] = $user['id'];
-
-
-            $this->log->create($logData);
-
-            return response()->json([
-                'message' => 'Successfully created log!',
-                'status' => 'OK',
-            ], 201);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+        return response()->json($data['data'], $data['code']);
     }
 
     public function tofile($id)
@@ -153,15 +136,5 @@ class LogController extends Controller
                 'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
-    }
-
-    public function search(Request $request)
-    {
-        $queryUrl = $request->query();
-        $data = $this->logService->search($queryUrl);
-
-        return response()->json([
-            'data' => $data
-        ], 200);
     }
 }

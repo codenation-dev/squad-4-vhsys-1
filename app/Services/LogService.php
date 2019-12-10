@@ -9,6 +9,9 @@ use App\Enums\OrderByType;
 use App\Enums\SearchByType;
 use App\Repositories\Contracts\LogRepositoryInterface;
 use App\Services\Contracts\LogServiceInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -32,17 +35,51 @@ class LogService implements LogServiceInterface
         $validator = $validator->validate();
 
         if(empty($validator)){
-            return [];
+            $data = ['data' => ''];
+            return ['data' => $data, 'code' => 200];
         }
 
         if(array_key_exists('errors', $validator)){
-            return $validator['message'];
+            $data = ['data' => $validator['message']];
+            return ['data' => $data, 'code' => 422];
         }
 
-        return $this->logRepository->search($validator);
+        try{
+            $logs = $this->logRepository->search($validator);
+        }catch (QueryException $exception){
+            $data = ['data' => 'There was an error processing data'];
+            return ['data' => $data, 'code' => 503];
+        }
+
+        $data = ['data' => $logs];
+        return ['data' => $data, 'code' => 200];
     }
 
     public function findById(int $id) {
-        return $this->logRepository->find($id);
+        try{
+            $log = $this->logRepository->find($id);
+        }catch (ModelNotFoundException $exception){
+            $data = ['data' => 'Not found log'];
+            return ['data' => $data, 'code' => 400];
+        }
+
+        $data = ['data' => $log];
+        return ['data' => $data, 'code' => 200];
+    }
+
+    public function create($log) {
+        $user = Auth::user();
+
+        $log['user_created'] = $user['id'];
+
+        try{
+            $this->logRepository->create($log);
+        }catch (QueryException $exception){
+            $data = ['data' => 'Could not create log, an error occurred while processing data'];
+            return ['data' => $data, 'code' => 503];
+        }
+
+        $data = ['data' => 'Successfully created log'];
+        return ['data' => $data, 'code' => 201];
     }
 }

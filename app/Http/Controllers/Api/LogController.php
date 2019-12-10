@@ -24,13 +24,13 @@ class LogController extends Controller
     public function index(string $order = 'level')
     {
         try {
-            $teste = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin', 'logs.*')
-                ->orderBy($order)
-                ->paginate(10);
-
-            return response()->json($teste, 200);
+//            $teste = DB::table('logs')
+//                ->join('users', 'logs.user_created', '=', 'users.id')
+//                ->select('users.name','user.admin', 'logs.*')
+//                ->orderBy($order)
+//                ->paginate(10);
+//            return response()->json($teste, 200);
+            return response()->json($this->log->orderBy($order)->paginate(10), 200);
 
         } catch (\Exception $e) {
             return response()->json([
@@ -146,7 +146,7 @@ class LogController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
+                'Message' => $e
             ], 503);
         }
     }
@@ -155,35 +155,49 @@ class LogController extends Controller
     {
 
 
-        $data = Log::all();
-        if (array_key_exists('select', ($request->all()))) {
-            $select = explode(',', $request['select']);
-
-            $data = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin','logs.' . $select)
-                ->get();
-
-        }
-        if (array_key_exists('search', ($request->all()))) {
-            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
-        }
-
-        if (array_key_exists('ambience', ($request->all()))) {
-            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
-
-        }
-        if (array_key_exists('order', ($request->all()))) {
-            $data = DB::table('logs')->orderBy($request['order'])->get();
-        }
-//        e
-//        lse{
-//            $data =  DB::table('logs')
-//                ->where($request['search'],'LIKE',$request['search_name'])
-//                ->orWhere ('ambience','=',$request['ambience'])
-//                ->orderBy ($request['order'])->get();
+//        $data = Log::all();
+//        if (array_key_exists('select', ($request->all()))) {
+//            $select = explode(',', $request['select']);
+//
+//            $data = DB::table('logs')
+//                ->join('users', 'logs.user_created', '=', 'users.id')
+//                ->select('users.name','user.admin','logs.' . $select)
+//                ->get();
+//
 //        }
+//        if (array_key_exists('search', ($request->all()))) {
+//            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
+//        }
+//
+//        if (array_key_exists('ambience', ($request->all()))) {
+//            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
+//
+//        }
+//        if (array_key_exists('order', ($request->all()))) {
+//            $data = DB::table('logs')->orderBy($request['order'])->get();
+//        }
+////        e
+////        lse{
+////            $data =  DB::table('logs')
+////                ->where($request['search'],'LIKE',$request['search_name'])
+////                ->orWhere ('ambience','=',$request['ambience'])
+////                ->orderBy ($request['order'])->get();
+////        }
 
+
+        $form = $request->all();
+
+        $data = Log::where(function ($query) use ($form){
+            if(isset($form['search'])){
+                $query->where($form['search'], 'LIKE','%'.$form['search_name'].'%');
+            }
+            if(isset($form['ambience'])){
+                $query->where('ambience', '=', $form['ambience']);
+            }
+            if(isset($form['order'])){
+                $query->orderBy($form['order']);
+            }
+        })->get();
         return response()->json($data);
     }
 

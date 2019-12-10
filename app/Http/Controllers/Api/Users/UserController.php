@@ -143,7 +143,7 @@ class UserController extends Controller
             $user->delete();
             return response()->json([
                 'status' => 'OK',
-                'Message' => "Deleted"
+                'Message' => 'Deleted!'
             ]);
         }catch (\Exception $e) {
             return response()->json([

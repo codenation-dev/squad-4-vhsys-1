@@ -32,10 +32,12 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-    echo "cURL Error #:" . $err;
+    $err;
 } else {
-    $retornoDelete = json_decode($response, TRUE);
-    if ($retornoDelete['message'] == 'Deleted') {
+    $retornoDelUser = json_decode($response, TRUE);
+
+    if ($retornoDelUser['Message'] == 'Deleted!') {
+
         header('Location: listUsuarios.php');
         exit;
     }

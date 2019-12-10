@@ -29,7 +29,7 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-    echo "cURL Error #:" . $err;
+    $err;
 } else {
     $response = json_decode($response, TRUE);
 }

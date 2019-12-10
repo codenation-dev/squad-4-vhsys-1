@@ -6,7 +6,7 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-include 'search.php';
+include 'listLogs.php';
 
 ?>
 
@@ -39,7 +39,7 @@ include 'search.php';
                         <a class="nav-item nav-link active" href="logs.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs</a>
                         <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
                         <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
-                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar novo Log</a>
+                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
                         <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
                     </div>
                 </div>
@@ -106,7 +106,8 @@ include 'search.php';
         </thead>
         <tbody>
 
-        <?php foreach($response as $result){ ?>
+        <?php foreach($response['data'] as $key => $result){ ?>
+        <?php print_r($result) ?>
             <tr style="text-align: center">
                 <td>
                     <div class="input-group">

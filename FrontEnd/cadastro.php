@@ -6,12 +6,10 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-include 'listUser.php';
-
 ?>
 
 <!DOCTYPE html>
-<html lang="br" xmlns="http://www.w3.org/1999/html">
+<html lang="br">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -24,9 +22,9 @@ include 'listUser.php';
     <title> Central de Erros </title>
 </head>
 <body>
-<div style="height: 100%">
+<div class="card text-center" style="height: 100%;">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 157px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="height: 160px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
                 <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
@@ -42,6 +40,7 @@ include 'listUser.php';
                         <a class="nav-item nav-link active" href="logs.php" style="color: white; text-decoration:none">Gerenciar Logs</a>
                     </div>
                 </div>
+
             </nav>
         </div>
     </div>
@@ -52,49 +51,42 @@ include 'listUser.php';
         Seu Token &eacute;: <div class="card" style="border: 0px; color: #5a6268"> <?php echo $_SESSION['Token']; ?></div>
     </div>
     <br>
-    <hr>
-<div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
-    <table class="table table-striped">
-        <thead>
-        <tr style="text-align: center">
-            <th scope="col">#</th>
-            <th scope="col">Usu&aacute;rio</th>
-            <th scope="col">Email</th>
-            <th scope="col">Adminstrador</th>
-            <th scope="col">Data de Cria&ccedil;&atilde;o</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <?php foreach($response['data'] as $result){ ?>
-
-            <tr style="text-align: center">
-                <td>
-                    <div class="input-group">
-                        <form action="deleteUser.php" method="POST"  >
-                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
-                        </form>
-                    </div>
-                </td>
-                <th scope="row"><?php echo $result['name'] ?></th>
-                <td><?php echo $result['email'] ?></td>
-                <td><?php if ($result['admin'] == 0) {echo "Não"; } else {echo "Sim"; }; ?></td>
-                <td><?php echo date("d/m/Y H:i", strtotime( $result['created_at'])); ?></td>
-
-            </tr>
-        <?php } ?>
-        </tbody>
-    </table>
-    <br>
-    <hr>
-    <br>
-</div>
-<div>
-    <div style="height: 100px; background-color: #17a2b8; text-align: center">
-        <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
+    <hr style="margin-left: 20px; margin-right: 20px;">
+    <div style="text-align: center; width: 100%; color: #5a6268">
+        <h4>Cadastrado de Usu&aacute;rios</h4>
     </div>
-</div>
-</div>
-</body>
+            <br>
+            <br>
+            <div class="card-body" align="center">
+                <form method="POST" action="cadastroUser.php" style="width: 70%">
+                    <div  style="text-align: left;">
+                        <label>Nome Completo</label>
+                        <input type="nome" class="form-control" required oninvalid="this.setCustomValidity('Nome Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="nome" name="nome" placeholder="Nome Completo">
+                    </div>
+                    <br>
+                    <div  style="text-align: left;">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" required oninvalid="this.setCustomValidity('E-mail Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="email" name="email" placeholder="Email">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" required oninvalid="this.setCustomValidity('Senha Obrigatório')" onchange="try{setCustomValidity('')}catch(e){}" id="password" name="password" placeholder="Senha">
+                    </div>
+                    <br>
+                    <div style="text-align: left;">
+                        <input type="checkbox" name="admin" value="1"> Administrador do Sistema
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-outline-secondary">Cadastrar</button>
+
+                </form>
+            </div>
+            <div class="card text-white bg-info mb-3">
+                <div class="card-footer" style="height: 100px;">
+                    <div style="margin-top: 25px"> Central de Erros @VHSYS</div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

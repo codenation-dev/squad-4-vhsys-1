@@ -39,7 +39,7 @@ include 'listExcluidos.php';
                         <a class="nav-item nav-link active" href="logs.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs</a>
                         <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
                         <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
-                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar novo Log</a>
+                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
                         <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
                     </div>
                 </div>
@@ -72,12 +72,13 @@ include 'listExcluidos.php';
             <tbody>
 
         <?php foreach($response['data'] as $key => $result){ ?>
+            <?php if ($result['type'] == 'Log') { ?>
             <?php $teste = json_decode($result['value']); ?>
-
+            <?php print_r($response) ?>
            <tr style="text-align: center">
-                <th scope="row"><?php if (!isset($teste->level)) { echo "User"; } else { echo $teste->level; } ?></th>
-                <td><?php if (!isset($teste->log)) { echo "User: ".$teste->name . ", Email: ".$teste->email; } else { echo $teste->log; } ?></td>
-               <td><?php if (!isset($teste->events)) { echo "0"; } else { echo $teste->events; } ?></td>
+                <th scope="row"><?php echo $teste->level ?></th>
+                <td><?php echo $teste->log ?></td>
+               <td><?php echo $teste->events ?></td>
                 <td>
                     <div class="container">
                        <a data-toggle="modal" data-target="#myModal<?php echo $teste->id ?>" style="color: #17a2b8">
@@ -88,25 +89,25 @@ include 'listExcluidos.php';
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"><?php if (!isset($teste->title)) { echo "Usu&aacute;rio Exclu&iacute;do"; } else { echo $teste->title; } ?></h4>
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $teste->title ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left"><?php if (!isset($teste->level)) { echo "User"; } else { echo $teste->level . " em "; } ?> <?php echo $teste->ambience ?></div>
+                                        <div class="col-6" style="text-align: left"><?php echo $teste->level . " em ". $teste->ambience ?></div>
                                     </div>
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php if (!isset($teste->log)) { echo "User: ".$teste->name . ", Email: ".$teste->email; } else { echo $teste->log; } ?></div>
-                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php if (!isset($teste->level)) { echo "User"; } else { echo $teste->level; } ?><br><br>
-                                            <b>Eventos</b><br><?php if (!isset($teste->events)) { echo "0"; } else { echo $teste->events; } ?><br></div>
+                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $teste->log ?></div>
+                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $teste->level ?><br><br>
+                                            <b>Eventos</b><br><?php echo $teste->events ?><br></div>
                                     </div>
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php if (!isset($teste->status)) { echo "Exclu&iacute;do"; } else { echo $teste->status; } ?></div>
+                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $teste->status ?></div>
                                         <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
                                     </div>
                                 </div>
@@ -116,6 +117,7 @@ include 'listExcluidos.php';
                     <!-- Fim Modal -->
                 </td>
             </tr>
+            <?php } ?>
         <?php } ?>
             </tbody>
         </table>

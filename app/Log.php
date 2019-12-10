@@ -17,6 +17,7 @@ class Log extends Model
         'status',
         'title',
         'user_created',
+        'name'
     ];
 
     /**
@@ -25,6 +26,12 @@ class Log extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_created','id');
+    }
+
 
     public function search($query){
         return DB::select($query);

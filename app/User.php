@@ -62,4 +62,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function logs()
+    {
+        return $this->hasMany(Log::class,'user_created');
+    }
+
 }

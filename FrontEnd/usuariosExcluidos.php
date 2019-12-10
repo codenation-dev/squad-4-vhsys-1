@@ -38,7 +38,7 @@ include 'userDeleted.php';
                         <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
                         <a class="nav-item nav-link active" href="listUsuarios.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios</a>
                         <a class="nav-item nav-link active" href="usuariosExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios Exclu&iacute;dos</a>
-                        <a class="nav-item nav-link active" href="cadastro.html" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Usu&aacute;rios</a>
+                        <a class="nav-item nav-link active" href="cadastro.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Usu&aacute;rio</a>
                         <a class="nav-item nav-link active" href="logs.php" style="color: white; text-decoration:none">Gerenciar Logs</a>
                     </div>
                 </div>

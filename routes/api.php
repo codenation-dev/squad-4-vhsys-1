@@ -41,7 +41,7 @@ Route::group(['middleware' => ['cors']], function () {
                 Route::get('/list', 'LogController@index')->name('logs');
                 Route::get('/list/{id}', 'LogController@show')->name('single_logs');
                 Route::post('/create', 'LogController@create')->name('create_logs');
-                Route::post('/tofile/{id}', 'LogController@tofile')->name('tofile');
+                Route::post('/tofile/{id}', 'LogController@toFile')->name('tofile');
                 Route::get('/filled', 'LogController@filled')->name('filled');
                 Route::get('/search', 'LogController@search')->name('search');
                 Route::delete('delete/{id}', 'LogController@destroy')->name('delete');
@@ -50,7 +50,8 @@ Route::group(['middleware' => ['cors']], function () {
 
             Route::prefix('/exclusions')->group(function() {
                 Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('delete_logs');
-                Route::get('/list', 'Exclusions\\ExclusionsController@show')->name('list_exclusions');
+                Route::get('/list', 'Exclusions\\ExclusionsController@index')->name('list_exclusions');
+                Route::get('/list/{id}', 'Exclusions\\ExclusionsController@show')->name('single_exclusions');
             });
 
             //FIM ROUTES LOGS

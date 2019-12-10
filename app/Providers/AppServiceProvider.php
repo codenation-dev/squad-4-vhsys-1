@@ -20,8 +20,18 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\Repositories\Contracts\ExclusionRepositoryInterface',
+            'App\Repositories\ExclusionRepository'
+        );
+
+        $this->app->bind(
             'App\Services\Contracts\LogServiceInterface',
             'App\Services\LogService'
+        );
+
+        $this->app->bind(
+            'App\Services\Contracts\ExclusionServiceInterface',
+            'App\Services\ExclusionService'
         );
     }
 

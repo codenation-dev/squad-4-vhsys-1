@@ -26,22 +26,15 @@ class LogController extends Controller
 
     public function index(string $order = 'level')
     {
-        try {
-            $teste = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin', 'logs.*')
-                ->orderBy($order)
-                ->paginate(10);
+        $data = $this->logService->all();
 
-            return response()->json($teste, 200);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
-
+            $data['code']
+        );
     }
 
     public function search(Request $request)
@@ -49,14 +42,24 @@ class LogController extends Controller
         $queryUrl = $request->query();
         $data = $this->logService->search($queryUrl);
 
-        return response()->json($data['data'], $data['code']);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']);
     }
 
     public function show(int $id)
     {
         $data = $this->logService->findById($id);
 
-        return response()->json(['data' => $data['data']], $data['code']);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']);
     }
 
     public function create(logRequest $request)
@@ -65,76 +68,46 @@ class LogController extends Controller
 
         $data = $this->logService->create($request->all());
 
-        return response()->json($data['data'], $data['code']);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']
+        );
     }
 
-    public function tofile($id)
+    public function toFile($id)
     {
-        try {
-            if ($log = Log::find($id)) {
-                $log->delete();
-                return response()->json([
-                    'message' => 'Success in archiving the log!',
-                    'status' => 'OK',
-                ], 201);
-            } else {
-                return response()->json([
-                    'message' => 'Error locating log to archive!',
-                    'status' => 'ERRO',
-                ], 404);
-            }
+        $data = $this->logService->toFile($id);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+            $data['code']);
     }
+
     public function filled(){
-        try{
-            return response()->json([
-                'status' => 'OK',
-                'Message' => Log::onlyTrashed()->with('User')->get()
-            ], 200);
-        }catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+        $data = $this->logService->filled();
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']
+        );
     }
 
     public function destroy($id)
     {
-        try {
-            if ($log = Log::find($id)) {
-                $exclusion = new ExclusionsController();
-                $user = Auth::user();
-                $data = [
-                    'value' => json_encode($log),
-                    'id_user' => $user['id']
-                ];
+        $data = $this->logService->destroy($id);
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-                $exclusion->create($data);
-
-                $log->forceDelete();
-                return response()->json([
-                    'message' => 'Success in deleting log!',
-                    'status' => 'OK',
-                ], 201);
-            } else {
-                return response()->json([
-                    'message' => 'log not found !',
-                    'status' => 'ERRO',
-                ], 404);
-            }
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+            $data['code']
+        );
     }
 }

@@ -4,37 +4,58 @@ namespace App\Http\Controllers\Api\Exclusions;
 
 use App\Exclusion;
 use App\Http\Requests\ExclusionsRequest;
+use App\Services\Contracts\ExclusionServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class ExclusionsController extends Controller
 {
-    public function create($request)
+    private $exclusionService;
+
+    public function __construct(ExclusionServiceInterface $exclusionService)
     {
-        if (Exclusion::create($request)) {
-            return true;
-        }
+        $this->exclusionService = $exclusionService;
     }
 
-    public function show()
+    public function index()
     {
-        try {
+        $data = $this->exclusionService->all();
 
-            $teste = DB::table('exclusions')
-                ->join('users', 'exclusions.id_user', '=', 'users.id')
-                ->select('users.name', 'exclusions.*')
-                ->get();
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-            return response()->json([
-                'data' => $teste,
-                'status' => 'ok',
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+            $data['code']
+        );
+    }
+
+    public function create($request)
+    {
+        $request->validated();
+
+        $data = $this->logService->create($request->all());
+
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']
+        );
+    }
+
+    public function show($id)
+    {
+        $data = $this->logService->findById($id);
+
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
+
+            $data['code']
+        );
     }
 }

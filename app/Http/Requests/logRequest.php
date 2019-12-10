@@ -24,11 +24,11 @@ class logRequest extends FormRequest
     public function rules()
     {
         return [
-            'level' => 'required|max:64',
-            'log' => 'required|max:255',
-            'events' => 'required|max:255',
-            'ambience' => 'required|max:255',
-            'title' => 'required|max:255',
+            'level'     => 'required|max:64',
+            'log'       => 'required|max:255',
+            'events'    => 'required|max:255',
+            'ambience'  => 'required|max:255',
+            'title'     => 'required|max:255',
 
         ];
     }

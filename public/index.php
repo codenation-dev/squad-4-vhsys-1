@@ -23,6 +23,9 @@ define('LARAVEL_START', microtime(true));
 
 require __DIR__.'/../vendor/autoload.php';
 
+set_exception_handler(function(Throwable $exception) {
+
+});
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights

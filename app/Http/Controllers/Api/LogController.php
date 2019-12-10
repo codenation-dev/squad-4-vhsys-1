@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\logRequest;
 use App\Log;
-use App\User;
+use App\Services\Contracts\LogServiceInterface;
+use App\Services\LogService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,19 +16,23 @@ use Tymon\JWTAuth\JWTAuth;
 
 class LogController extends Controller
 {
-    private $log;
+    private $logService;
 
-    public function __construct(Log $log)
+    public function __construct(LogServiceInterface $logService)
     {
-        $this->log = $log;
+        $this->logService = $logService;
     }
 
-    public function index($order = 'level')
+    public function index(string $order = 'level')
     {
         try {
+            $teste = DB::table('logs')
+                ->join('users', 'logs.user_created', '=', 'users.id')
+                ->select('users.name','user.admin', 'logs.*')
+                ->orderBy($order)
+                ->paginate(10);
 
-            $data = Log::with('User')->paginate(10);
-            return response()->json($data, 200);
+            return response()->json($teste, 200);
 
         } catch (\Exception $e) {
             return response()->json([
@@ -57,6 +62,8 @@ class LogController extends Controller
     {
         $request->validated();
         $user = Auth::user();
+
+        dd($user);
 
         try {
             $logData = $request->all();
@@ -123,8 +130,7 @@ class LogController extends Controller
                 $user = Auth::user();
                 $data = [
                     'value' => json_encode($log),
-                    'id_user' => $user['id'],
-                    'type' => 'Log'
+                    'id_user' => $user['id']
                 ];
 
                 $exclusion->create($data);
@@ -144,43 +150,19 @@ class LogController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'ERROR',
-                'Message' => $e
+                'Message' => 'Error not reported, consult administrator'
             ], 503);
         }
     }
 
     public function search(Request $request)
     {
+        $queryUrl = $request->query();
+        $data = $this->logService->search($queryUrl);
 
-        $data = Log::all();
-        if (array_key_exists('select', ($request->all()))) {
-            $select = explode(',', $request['select']);
-
-            $data = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin','logs.' . $select)
-                ->get();
-
-        }
-        if (array_key_exists('search', ($request->all()))) {
-            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
-        }
-
-        if (array_key_exists('ambience', ($request->all()))) {
-            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
-
-        }
-        if (array_key_exists('order', ($request->all()))) {
-            $data = DB::table('logs')->orderBy($request['order'])->get();
-        }
-
-
-
-//        exemplo de busca de usuario
-//        $data = Log::with('User')->get();
-
-
-        return response()->json($data);
+        return response()->json([
+            'data' => $data
+        ], 200);
     }
 
 

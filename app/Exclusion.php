@@ -10,5 +10,6 @@ class Exclusion extends Model
     protected $fillable = [
         'value',
         'id_user',
+        'type'
     ];
 }

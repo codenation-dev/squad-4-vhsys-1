@@ -127,7 +127,8 @@ class LogController extends Controller
                 $user = Auth::user();
                 $data = [
                     'value' => json_encode($log),
-                    'id_user' => $user['id']
+                    'id_user' => $user['id'],
+                    'type' => 'Log'
                 ];
 
                 $exclusion->create($data);

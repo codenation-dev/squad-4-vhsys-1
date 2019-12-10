@@ -21,6 +21,7 @@ class LoginJwtController extends Controller
             if (!$token = auth('api')->attempt($credentials)) {
                 return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
             }
+            
             $user = User::where('email', '=', $request['email'])->first();
 
             return response()->json(

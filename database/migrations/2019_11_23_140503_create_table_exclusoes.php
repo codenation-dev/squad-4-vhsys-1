@@ -17,6 +17,7 @@ class CreateTableExclusoes extends Migration
             $table->bigIncrements('id');
             $table->string('value',4000);
             $table->integer('id_user');
+            $table->string('type');
             $table->timestamps();
         });
     }

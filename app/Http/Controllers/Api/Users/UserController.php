@@ -131,7 +131,8 @@ class UserController extends Controller
             $user = Auth::user();
             $data = [
                 'value'=> json_encode($user),
-                'id_user' => $user['id']
+                'id_user' => $user['id'],
+                'type' => 'User'
             ];
 
             $user =  User::where('id','=', $id)->first();

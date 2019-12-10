@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\logRequest;
 use App\Log;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class LogController extends Controller
         $this->log = $log;
     }
 
-    public function index(string $order = 'level')
+    public function index($order = 'level')
     {
         try {
 //            $teste = DB::table('logs')
@@ -126,7 +127,8 @@ class LogController extends Controller
                 $user = Auth::user();
                 $data = [
                     'value' => json_encode($log),
-                    'id_user' => $user['id']
+                    'id_user' => $user['id'],
+                    'type' => 'Log'
                 ];
 
                 $exclusion->create($data);
@@ -154,7 +156,18 @@ class LogController extends Controller
     public function search(Request $request)
     {
 
+        $form = $request->all();
+        $data = Log::where(function ($query) use ($form){
+            if(isset($form['search'])){
+                $query->where($form['search'], 'LIKE','%'.$form['search_name'].'%')
+                    ->join('users', 'logs.user_created', '=', 'users.id')
+                    ->select('users.name','user.admin','logs.*');
+            }
+            if(isset($form['ambience'])){
+                $query->with('User')
+                    ->where('ambience', '=', $form['ambience']);
 
+<<<<<<< HEAD
 //        $data = Log::all();
 //        if (array_key_exists('select', ($request->all()))) {
 //            $select = explode(',', $request['select']);
@@ -186,6 +199,19 @@ class LogController extends Controller
 
 
         $form = $request->all();
+=======
+            }
+            if(isset($form['order'])){
+                $query->orderBy($form['order'])
+                    ->join('users', 'logs.user_created', '=', 'users.id')
+                    ->select('users.name','user.admin','logs.*');;
+            }
+        })->get();
+
+//        exemplo de busca de usuario
+//        $data = Log::with('User')->get();
+
+>>>>>>> 66edbd802624873071637f67a0b508988df10a14
 
         $data = Log::where(function ($query) use ($form){
             if(isset($form['search'])){

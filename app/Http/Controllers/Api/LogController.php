@@ -105,7 +105,7 @@ class LogController extends Controller
         try{
             return response()->json([
                 'status' => 'OK',
-                'Message' => Log::onlyTrashed()->get()
+                'Message' => Log::onlyTrashed()->with('User')->get()
             ], 200);
         }catch (\Exception $e) {
             return response()->json([

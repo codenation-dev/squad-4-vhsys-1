@@ -40,7 +40,9 @@ include 'listExcluidos.php';
                         <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
                         <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
                         <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
-                        <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
+                        <?php if ($_SESSION['admin'] == 1 ) { ?>
+                            <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
+                        <?php } ?>
                     </div>
                 </div>
             </nav>
@@ -74,7 +76,6 @@ include 'listExcluidos.php';
         <?php foreach($response['data'] as $key => $result){ ?>
             <?php if ($result['type'] == 'Log') { ?>
             <?php $teste = json_decode($result['value']); ?>
-            <?php print_r($response) ?>
            <tr style="text-align: center">
                 <th scope="row"><?php echo $teste->level ?></th>
                 <td><?php echo $teste->log ?></td>

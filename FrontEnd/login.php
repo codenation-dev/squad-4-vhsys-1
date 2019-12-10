@@ -33,6 +33,7 @@ if ($err) {
     session_start();
     $_SESSION['Token'] = $retornoToken['token'];
     $_SESSION['user'] = $retornoToken['user'];
+    $_SESSION['admin'] = $retornoToken['admin'];
     header('Location: logs.php');
     exit;
 }

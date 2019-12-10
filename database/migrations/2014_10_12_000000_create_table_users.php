@@ -20,7 +20,7 @@ class CreateTableUsers extends Migration
             $table->timestamp('email_verified_at')->nullable($value = true);
             $table->string('password',255);
             $table->rememberToken()->nullable($value = true);
-            $table->integer('admin')->default(0);
+            $table->integer('admin')->nullable($value = true)->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->integer('id_user_alteracao')->nullable($value = true);

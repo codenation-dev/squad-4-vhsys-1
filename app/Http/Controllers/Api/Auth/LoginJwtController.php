@@ -45,12 +45,13 @@ class LoginJwtController extends Controller
                     'Message' => 'Registered User'
                 ], 202);
             }
-            $credentials = $request->all(['name', 'password', 'email']);
+            $credentials = $request->all(['name', 'password', 'email','admin']);
 
             if (User::create([
                 'name' => $credentials['name'],
                 'email' => $credentials['email'],
                 'password' => Hash::make($credentials['password']),
+                'admin' => empty($credentials['admin'])?0:1,
 
             ])) {
                 return response()->json([

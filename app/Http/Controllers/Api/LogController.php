@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\logRequest;
 use App\Log;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class LogController extends Controller
         $this->log = $log;
     }
 
-    public function index(string $order = 'level')
+    public function index($order = 'level')
     {
         try {
             $teste = DB::table('logs')
@@ -154,35 +155,28 @@ class LogController extends Controller
     public function search(Request $request)
     {
 
+        $form = $request->all();
+        $data = Log::where(function ($query) use ($form){
+            if(isset($form['search'])){
+                $query->where($form['search'], 'LIKE','%'.$form['search_name'].'%')
+                    ->join('users', 'logs.user_created', '=', 'users.id')
+                    ->select('users.name','user.admin','logs.*');
+            }
+            if(isset($form['ambience'])){
+                $query->with('User')
+                    ->where('ambience', '=', $form['ambience']);
 
-        $data = Log::all();
-        if (array_key_exists('select', ($request->all()))) {
-            $select = explode(',', $request['select']);
+            }
+            if(isset($form['order'])){
+                $query->orderBy($form['order'])
+                    ->join('users', 'logs.user_created', '=', 'users.id')
+                    ->select('users.name','user.admin','logs.*');;
+            }
+        })->get();
 
-            $data = DB::table('logs')
-                ->join('users', 'logs.user_created', '=', 'users.id')
-                ->select('users.name','user.admin','logs.' . $select)
-                ->get();
+//        exemplo de busca de usuario
+//        $data = Log::with('User')->get();
 
-        }
-        if (array_key_exists('search', ($request->all()))) {
-            $data = DB::table('logs')->where($request['search'], 'LIKE', $request['search_name'])->get();
-        }
-
-        if (array_key_exists('ambience', ($request->all()))) {
-            $data = DB::table('logs')->where('ambience', '=', $request['ambience'])->get();
-
-        }
-        if (array_key_exists('order', ($request->all()))) {
-            $data = DB::table('logs')->orderBy($request['order'])->get();
-        }
-//        e
-//        lse{
-//            $data =  DB::table('logs')
-//                ->where($request['search'],'LIKE',$request['search_name'])
-//                ->orWhere ('ambience','=',$request['ambience'])
-//                ->orderBy ($request['order'])->get();
-//        }
 
         return response()->json($data);
     }

@@ -25,13 +25,9 @@ class LogController extends Controller
     public function index($order = 'level')
     {
         try {
-//            $teste = DB::table('logs')
-//                ->join('users', 'logs.user_created', '=', 'users.id')
-//                ->select('users.name','user.admin', 'logs.*')
-//                ->orderBy($order)
-//                ->paginate(10);
-//            return response()->json($teste, 200);
-            return response()->json($this->log->orderBy($order)->paginate(10), 200);
+
+            $data = Log::with('User')->paginate(10);
+            return response()->json($data, 200);
 
         } catch (\Exception $e) {
             return response()->json([

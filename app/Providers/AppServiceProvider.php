@@ -14,15 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\Contracts\LogRepositoryInterface',
-            'App\Repositories\LogRepository'
-        );
-
-        $this->app->bind(
-            'App\Services\Contracts\LogServiceInterface',
-            'App\Services\LogService'
-        );
+        //
     }
 
     /**

@@ -36,13 +36,9 @@ class LogService implements LogServiceInterface
         }
 
         if(array_key_exists('errors', $validator)){
-            return $validator['message'];
+            return ['message' => $validator['message']];
         }
 
         return $this->logRepository->search($validator);
-    }
-
-    public function findById(int $id) {
-        return $this->logRepository->find($id);
     }
 }

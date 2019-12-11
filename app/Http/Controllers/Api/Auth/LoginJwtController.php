@@ -23,7 +23,7 @@ class LoginJwtController extends Controller
             }
             
             $user = User::where('email', '=', $request['email'])->first();
-
+            print_r($user['admin']); die;
             return response()->json(
                 [
                     'status' => 'OK',

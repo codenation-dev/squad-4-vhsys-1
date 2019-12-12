@@ -27,7 +27,8 @@ class LogService implements LogServiceInterface
         $this->logRepository = $logRepository;
     }
 
-    public function all() {
+    public function all()
+    {
         try{
             $logs = $this->logRepository->all();
 
@@ -89,14 +90,21 @@ class LogService implements LogServiceInterface
         try{
             $log = $this->logRepository->findById($id);
 
+            if(empty($log)){
+                return [
+                    'data' => 'Not found log',
+                    'code' => 404
+                ];
+            }
+
             return [
                 'data' => $log,
                 'code' => 200
             ];
-        }catch (ModelNotFoundException $exception){
+        }catch (QueryException $exception){
             return [
-                'data' => 'Not found log',
-                'code' => 404
+                'data' => 'An error occurred while processing the request',
+                'code' => 503
             ];
         }
     }
@@ -176,20 +184,16 @@ class LogService implements LogServiceInterface
         try{
             $this->logRepository->forceDelete($log['data']);
 
-            return response()->json(
-                [
-                    'data' => 'Log deleted successfully',
-                    'code' => 204
-                ]
-            );
+            return [
+                'data' => 'Log deleted successfully',
+                'code' => 200
+            ];
 
         }catch (QueryException $exception) {
-            return response()->json(
-                [
-                    'data' => 'Unable to delete log',
-                    'code' => 503
-                ]
-            );
+            return [
+                'data' => 'Unable to delete log',
+                'code' => 503
+            ];
         }
     }
 }

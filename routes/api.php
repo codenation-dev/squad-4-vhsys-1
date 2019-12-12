@@ -29,7 +29,7 @@ Route::group(['middleware' => ['cors']], function () {
             //ROUTES USERS
             Route::prefix('users')->group(function () {
                 Route::get('list', 'Users\\UserController@index')->name('list');
-                Route::get('listdeleted', 'Users\\UserController@list_user_deleted')->name('listdeleted');
+                Route::get('listdeleted', 'Users\\UserController@listUserDeleted')->name('listdeleted');
                 Route::post('list/{id}', 'Users\\UserController@show')->name('listuser');
                 Route::delete('delete/{id}', 'Users\\UserController@destroy')->name('delete');
                 Route::put('update/{id}', 'Users\\UserController@update')->name('update');

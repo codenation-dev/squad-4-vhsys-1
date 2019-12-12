@@ -24,7 +24,7 @@ class LogController extends Controller
         $this->logService = $logService;
     }
 
-    public function index(string $order = 'level')
+    public function index()
     {
         $data = $this->logService->all();
 
@@ -102,6 +102,7 @@ class LogController extends Controller
     public function destroy($id)
     {
         $data = $this->logService->destroy($id);
+
         return response()->json(
             [
                 'data' => $data['data']

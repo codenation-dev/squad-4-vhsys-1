@@ -3,70 +3,45 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Requests\Request\UsersRequest;
+use App\Services\Contracts\UserServiceInterface;
 use App\User;
-use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 
 class LoginJwtController extends Controller
 {
+    private $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function login(Request $request)
     {
-        try {
-            $credentials = $request->all(['email', 'password']);
+        $data = $this->userService->login($request->all(['email', 'password']));
 
-            if (!$token = auth('api')->attempt($credentials)) {
-                return response()->json(['status' => 'ERROR', 'message' => 'Not Authorized'], 401);
-            }
-            
-            $user = User::where('email', '=', $request['email'])->first();
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-            return response()->json(
-                [
-                    'status' => 'OK',
-                    'user' => $user['name'],
-                    'admin' => $user['admin'],
-                    'token' => $token
-                ], 200);
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+            $data['code']
+        );
     }
 
     public function register(UsersRequest $request)
     {
-        try {
-            if (User::where('email', $request['email'])->first()) {
-                return response()->json([
-                    'status' => 'ERROR',
-                    'Message' => 'Registered User'
-                ], 202);
-            }
-            $credentials = $request->all(['name', 'password', 'email','admin']);
+        $data = $this->userService->create($request->all(['name', 'password', 'email','admin']));
 
-            if (User::create([
-                'name' => $credentials['name'],
-                'email' => $credentials['email'],
-                'password' => Hash::make($credentials['password']),
-                'admin' => empty($credentials['admin'])?0:1,
+        return response()->json(
+            [
+                'data' => $data['data']
+            ],
 
-            ])) {
-                return response()->json([
-                    'status' => 'OK',
-                    'Message' => 'Registered Successfully'
-                ], 201);
-            }
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'ERROR',
-                'Message' => 'Error not reported, consult administrator'
-            ], 503);
-        }
+            $data['code']
+        );
     }
 }

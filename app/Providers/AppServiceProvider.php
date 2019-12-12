@@ -25,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            'App\Repositories\Contracts\UserRepositoryInterface',
+            'App\Repositories\UserRepository'
+        );
+
+        $this->app->bind(
             'App\Services\Contracts\LogServiceInterface',
             'App\Services\LogService'
         );
@@ -32,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Services\Contracts\ExclusionServiceInterface',
             'App\Services\ExclusionService'
+        );
+
+        $this->app->bind(
+            'App\Services\Contracts\UserServiceInterface',
+            'App\Services\UserService'
         );
     }
 

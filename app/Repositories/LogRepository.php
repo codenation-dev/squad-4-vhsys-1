@@ -17,7 +17,8 @@ class LogRepository implements LogRepositoryInterface
         $this->model = $model;
     }
 
-    public function all() {
+    public function all()
+    {
         return DB::table('logs')
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
@@ -25,7 +26,8 @@ class LogRepository implements LogRepositoryInterface
 
     }
 
-    public function search($queryUrl) {
+    public function search($queryUrl)
+    {
         $data = DB::table('logs')
                     ->select('logs.id', 'logs.level', 'logs.log', 'logs.events', 'logs.ambience', 'logs.status', 'logs.title', 'logs.created_at', 'users.name')
                     ->join('users', 'logs.user_created', '=', 'users.id');
@@ -45,15 +47,18 @@ class LogRepository implements LogRepositoryInterface
         return $data->get();
     }
 
-    public function findById(int $id){
+    public function findById(int $id)
+    {
         return $this->model::find($id);
     }
 
-    public function create(array $log){
+    public function create(array $log)
+    {
         $this->model->create($log);
     }
 
-    public function toFile(Log $log) {
+    public function toFile(Log $log)
+    {
         $log->delete();
     }
 
@@ -62,7 +67,8 @@ class LogRepository implements LogRepositoryInterface
         return $this->model->onlyTrashed()->with('User')->get();
     }
 
-    public function forceDelete(Log $log) {
+    public function forceDelete(Log $log)
+    {
         $log->forceDelete();
     }
 }

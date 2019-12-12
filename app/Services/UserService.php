@@ -24,14 +24,14 @@ class UserService implements UserServiceInterface
 
     public function all()
     {
-        try{
+        try {
             $user = $this->userRepository->all();
 
             return [
                 'data' => $user,
                 'code' => 200
             ];
-        }catch (QueryException $exception) {
+        } catch (QueryException $exception) {
             return [
                 'data' => 'An error occurred while processing the request',
                 'code' => 503
@@ -41,10 +41,10 @@ class UserService implements UserServiceInterface
 
     public function findById(int $id)
     {
-        try{
+        try {
             $user = $this->userRepository->findById($id);
 
-            if(empty($user)){
+            if (empty($user)) {
                 return [
                     'data' => 'Not found user',
                     'code' => 404
@@ -55,7 +55,7 @@ class UserService implements UserServiceInterface
                 'data' => $user,
                 'code' => 200
             ];
-        }catch (QueryException $exception){
+        } catch (QueryException $exception) {
             return [
                 'data' => 'An error occurred while processing the request',
                 'code' => 503
@@ -68,7 +68,7 @@ class UserService implements UserServiceInterface
         try {
             $user = $this->userRepository->findByEmail($email);
 
-            if(empty($user)){
+            if (empty($user)) {
                 return [
                     'data' => 'Not found user',
                     'code' => 404
@@ -79,7 +79,7 @@ class UserService implements UserServiceInterface
                 'data' => $user,
                 'code' => 200
             ];
-        }catch (QueryException $exception) {
+        } catch (QueryException $exception) {
             return [
                 'data' => 'An error occurred while processing the request',
                 'code' => 503
@@ -101,32 +101,32 @@ class UserService implements UserServiceInterface
     {
         $user = $this->findByEmail($dataNewUser['email']);
 
-        if($user['code'] == 200){
+        if ($user['code'] == 200) {
             return [
                 'data' => 'User already registered',
                 'code' => 202
             ];
         }
 
-        if($user['code'] != 404){
+        if ($user['code'] != 404) {
             return $user;
         }
 
         $newUser = [
-            'name'      => $dataNewUser['name'],
-            'email'     => $dataNewUser['email'],
-            'password'  => Hash::make($dataNewUser['password']),
-            'admin'     => empty($dataNewUser['admin']) ? 0 : 1
+            'name' => $dataNewUser['name'],
+            'email' => $dataNewUser['email'],
+            'password' => Hash::make($dataNewUser['password']),
+            'admin' => empty($dataNewUser['admin']) ? 0 : 1
         ];
 
-        try{
+        try {
             $this->userRepository->create($newUser);
 
             return [
                 'data' => 'User successfully registered',
                 'code' => 201
             ];
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return [
                 'data' => 'Unable to register user',
                 'code' => 503
@@ -134,11 +134,11 @@ class UserService implements UserServiceInterface
         }
     }
 
-    public function delete ($id)
+    public function delete($id)
     {
         $user = $this->findById($id);
 
-        if($user['code'] == 404){
+        if ($user['code'] == 404) {
             return $user;
         }
 
@@ -150,11 +150,11 @@ class UserService implements UserServiceInterface
 
         $exclusion = $this->exclusionService->create($data);
 
-        if($exclusion['code'] == 503){
+        if ($exclusion['code'] == 503) {
             return $exclusion;
         }
 
-        try{
+        try {
             $this->userRepository->delete($user['data']);
 
             return [
@@ -162,7 +162,7 @@ class UserService implements UserServiceInterface
                 'code' => 200
             ];
 
-        }catch (QueryException $exception) {
+        } catch (QueryException $exception) {
             return [
                 'data' => 'Unable to delete user',
                 'code' => 503
@@ -174,7 +174,7 @@ class UserService implements UserServiceInterface
     {
         $user = $this->findById($id);
 
-        if($user['code'] == 404){
+        if ($user['code'] == 404) {
             return $user;
         }
 
@@ -182,17 +182,17 @@ class UserService implements UserServiceInterface
 
         $user['data']->name = $data['name'];
         $user['data']->email = $data['email'];
-        $user['data']->password =  Hash::make($data['password']);
+        $user['data']->password = Hash::make($data['password']);
         $user['data']->id_user_alteracao = $userAlt['id'];
 
-        try{
+        try {
             $this->userRepository->update($user['data']);
 
             return [
                 'data' => 'user updated successfully',
                 'code' => 200
             ];
-        }catch (QueryException $e) {
+        } catch (QueryException $e) {
             return [
                 'data' => 'Unable to update user',
                 'code' => 503
@@ -200,7 +200,8 @@ class UserService implements UserServiceInterface
         }
     }
 
-    public function login($data) {
+    public function login($data)
+    {
         if (!$token = auth('api')->attempt($data)) {
             return [
                 'data' => 'Username or password is invalid',
@@ -210,7 +211,7 @@ class UserService implements UserServiceInterface
 
         $user = $this->findByEmail($data['email']);
 
-        if($user['code'] != 200){
+        if ($user['code'] != 200) {
             return $user;
         }
 

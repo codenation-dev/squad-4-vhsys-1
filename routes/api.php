@@ -18,14 +18,40 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => ['cors']], function () {
     Route::prefix('v1')->namespace('Api')->group(function () {
-        //public routes
+
+        // |******************************************************************************************|
+        // |                               PUBLIC ROUTES                                              |
+        // ||
+
         Route::post('requestToken', 'Auth\\LoginJwtController@login')->name('requestToken');
         Route::post('registerUser', 'Auth\\LoginJwtController@register')->name('registerUser');
 
-        //FIM PUBLIC ROUTES
+        // |                                                                                          |
+        // |                              END  PUBLIC ROUTES                                          |
+        // |******************************************************************************************|
 
-        //middleware jwt
+
+        // |******************************************************************************************|
+        // |                               USER   ROUTES                                              |
+        // |                                                                                          |
         Route::group(['middleware' => ['jwt.auth']], function () {
+            Route::prefix('/logs')->group(function () {
+                Route::get('/list', 'Logs\\LogController@index')->name('logs');
+                Route::get('/filled', 'Logs\\LogController@filled')->name('filled');
+
+            });
+        });
+
+        // |
+        // |                             END  USER   ROUTES                                           |
+        // |******************************************************************************************|
+
+
+        // |******************************************************************************************|
+        // |                               ADMIN  ROUTES                                              |
+        // ||
+        //middleware jwt
+        Route::group(['middleware' => ['jwt.auth', 'userAdmin']], function () {
             //ROUTES USERS
             Route::prefix('users')->group(function () {
                 Route::get('list', 'Users\\UserController@index')->name('list');
@@ -37,26 +63,29 @@ Route::group(['middleware' => ['cors']], function () {
             // FIM ROUTES USERS
 
             //ROUTES LOGS
-            Route::prefix('/logs')->group(function() {
-                Route::get('/list', 'Logs\\LogController@index')->name('logs');
+            Route::prefix('/logs')->group(function () {
+
                 Route::get('/list/{id}', 'Logs\\LogController@show')->name('single_logs');
                 Route::post('/create', 'Logs\\LogController@create')->name('create_logs');
                 Route::post('/tofile/{id}', 'Logs\\LogController@toFile')->name('tofile');
-                Route::get('/filled', 'Logs\\LogController@filled')->name('filled');
                 Route::get('/search', 'Logs\\LogController@search')->name('search');
                 Route::delete('delete/{id}', 'Logs\\LogController@destroy')->name('delete');
 
             });
-
-            Route::prefix('/exclusions')->group(function() {
-                Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('delete_logs');
-                Route::get('/list', 'Exclusions\\ExclusionsController@index')->name('list_exclusions');
-                Route::get('/list/{id}', 'Exclusions\\ExclusionsController@show')->name('single_exclusions');
-            });
-
             //FIM ROUTES LOGS
+
+            // exclusions routs
+            Route::prefix('/exclusions')->group(function () {
+                Route::post('/create', 'Exclusions\\ExclusionsController@create')->name('delete_logs');
+                Route::get('/list/{id}', 'Exclusions\\ExclusionsController@show')->name('single_exclusions');
+                Route::get('/list_exclusion', 'Exclusions\\ExclusionsController@index')->name('list_exclusion');
+            });
+            // end exclusions routs
         });
-        //FIM MIDDLEWARE JWT
+
+        // |                                                                                          |
+        // |                              END  ADMIN ROUTES                                           |
+        // |******************************************************************************************|
     });
 });
 

@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -49,5 +50,13 @@ class UserRepository implements UserRepositoryInterface
     public function update(User $user)
     {
         $user->save();
+    }
+
+    public function userAdmin()
+    {
+        $user = User::find(Auth::id());
+        if ($user->admin != 1) {
+            return 'user';
+        }
     }
 }

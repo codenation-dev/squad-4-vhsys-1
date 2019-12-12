@@ -88,7 +88,8 @@ class LogController extends Controller
             $data['code']);
     }
 
-    public function filled(){
+    public function filled()
+    {
         $data = $this->logService->filled();
         return response()->json(
             [

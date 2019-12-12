@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Logs;
 
 use App\Http\Controllers\Api\Exclusions\ExclusionsController;
 use App\Http\Requests\logRequest;

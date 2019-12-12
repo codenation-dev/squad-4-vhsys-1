@@ -203,7 +203,7 @@ class UserService implements UserServiceInterface
     public function login($data) {
         if (!$token = auth('api')->attempt($data)) {
             return [
-                'data' => 'Invalid or unauthorized token',
+                'data' => 'Username or password is invalid',
                 'code' => 401
             ];
         }

@@ -23,7 +23,7 @@ class LogRepository implements LogRepositoryInterface
         return DB::table('logs')
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
-            ->get();
+            ->paginate(100);
 
     }
 
@@ -71,7 +71,7 @@ class LogRepository implements LogRepositoryInterface
 
     public function forceDelete(Log $log)
     {
-        $log->forceDelete();
+        $log->forceDelete();;
     }
 
     public function allLogUser()
@@ -80,7 +80,7 @@ class LogRepository implements LogRepositoryInterface
             ->where('logs.user_created', '=', Auth::id())
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
-            ->get();
+            ->paginate(100);
     }
 
     public function filledUser()

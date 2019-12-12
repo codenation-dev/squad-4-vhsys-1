@@ -179,14 +179,18 @@ class LogService implements LogServiceInterface
 
     public function destroy($id)
     {
+
         $log = $this->findById($id);
+
 
         if ($log['code'] == 404) {
             return $log;
         }
 
         $data = [
-            'value' => json_encode($log['data']),
+            'value' => json_encode($log),
+            'id_user' => Auth::id(),
+            'type' => 'User'
         ];
 
         $exclusion = $this->exclusionService->create($data);

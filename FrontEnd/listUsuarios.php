@@ -26,25 +26,37 @@ include 'listUser.php';
 <body>
 <div style="height: 100%">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 157px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
                 <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <hr color="#FFFFFF">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a2b8 ">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
-                        <a class="nav-item nav-link active" href="listUsuarios.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios</a>
-                        <a class="nav-item nav-link active" href="usuariosExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios Exclu&iacute;dos</a>
-                        <a class="nav-item nav-link active" href="cadastro.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Usu&aacute;rio</a>
-                        <a class="nav-item nav-link active" href="logs.php" style="color: white; text-decoration:none">Gerenciar Logs</a>
-                    </div>
-                </div>
-            </nav>
         </div>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="listUsuarios.php">Usu&aacute;rios</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="usuariosExcluidos.php">Usu&aacute;rios Exclu&iacute;dos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="cadastro.php">Cadastrar Usu&aacute;rio</a>
+                </li>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logs.php">Gerenciar Logs</a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </nav>
     <br>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
         Ol&aacute; <?php echo $_SESSION['user']; ?>,
@@ -53,48 +65,47 @@ include 'listUser.php';
     </div>
     <br>
     <hr>
-<div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
-    <table class="table table-striped">
-        <thead>
-        <tr style="text-align: center">
-            <th scope="col">#</th>
-            <th scope="col">Usu&aacute;rio</th>
-            <th scope="col">Email</th>
-            <th scope="col">Adminstrador</th>
-            <th scope="col">Data de Cria&ccedil;&atilde;o</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <?php foreach($response['data'] as $result){ ?>
-
+    <div align="center" style="padding-left: 20px; padding-right: 20px;">
+        <table class="table table-striped">
+            <thead>
             <tr style="text-align: center">
-                <td>
-                    <div class="input-group">
-                        <form action="deleteUser.php" method="POST"  >
-                            <input  type="hidden" name="id" value="<?php echo $result['id']?>">
-                            <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
-                        </form>
-                    </div>
-                </td>
-                <th scope="row"><?php echo $result['name'] ?></th>
-                <td><?php echo $result['email'] ?></td>
-                <td><?php if ($result['admin'] == 0) {echo "Não"; } else {echo "Sim"; }; ?></td>
-                <td><?php echo date("d/m/Y H:i", strtotime( $result['created_at'])); ?></td>
-
+                <th scope="col">#</th>
+                <th scope="col">Usu&aacute;rio</th>
+                <th scope="col">Email</th>
+                <th scope="col">Adminstrador</th>
+                <th scope="col">Data de Cria&ccedil;&atilde;o</th>
             </tr>
-        <?php } ?>
-        </tbody>
-    </table>
-    <br>
-    <hr>
-    <br>
-</div>
-<div>
-    <div style="height: 100px; background-color: #17a2b8; text-align: center">
-        <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
+            </thead>
+            <tbody>
+
+            <?php foreach($response['data'] as $result){ ?>
+
+                <tr style="text-align: center">
+                    <td>
+                        <div class="input-group">
+                            <form action="deleteUser.php" method="POST"  >
+                                <input  type="hidden" name="id" value="<?php echo $result['id']?>">
+                                <button type="Submit" style="border: 0; background-color: transparent; color: #17a2b8 "><i class="fa fa-remove"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                    <th scope="row"><?php echo $result['name'] ?></th>
+                    <td><?php echo $result['email'] ?></td>
+                    <td><?php if ($result['admin'] == 0) {echo "Não"; } else {echo "Sim"; }; ?></td>
+                    <td><?php echo date("d/m/Y H:i", strtotime( $result['created_at'])); ?></td>
+
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <br>
+        <div>
+            <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 15px; background-color: #17a2b8; text-align: center">
+                <div style="color: #FFFFFF;"> Central de Erros @VHSYS</div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </body>
 </html>

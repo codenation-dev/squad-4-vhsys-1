@@ -26,29 +26,40 @@ include 'listExcluidos.php';
 <body>
 <div style="height: 100%">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 160px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
                 <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <hr color="#FFFFFF">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a2b8 ">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Logs</a>
-                        <a class="nav-item nav-link active" href="logs.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs</a>
-                        <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
-                        <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
-                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
-                        <?php if ($_SESSION['admin'] == 1 ) { ?>
-                            <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
-                        <?php } ?>
-                    </div>
-                </div>
-            </nav>
-
         </div>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="logs.php">Logs</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
+                </li>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="listUsuarios.php">Gerenciar Usu&aacute;rios</a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </nav>
     <br>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
         Ol&aacute; <?php echo $_SESSION['user']; ?>,
@@ -61,7 +72,7 @@ include 'listExcluidos.php';
         <h4>Lista de Logs Exclu&iacute;dos</h4>
     </div>
     <br>
-    <div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
+    <div align="center" style="padding-left: 20px; padding-right: 20px;">
         <table class="table table-striped">
             <thead>
             <tr style="text-align: center">
@@ -127,8 +138,8 @@ include 'listExcluidos.php';
         <br>
     </div>
     <div>
-        <div style="height: 100px; background-color: #17a2b8; text-align: center">
-            <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
+        <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 15px; background-color: #17a2b8; text-align: center">
+            <div style="color: #FFFFFF;"> Central de Erros @VHSYS</div>
         </div>
     </div>
 </div>

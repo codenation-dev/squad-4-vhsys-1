@@ -30,8 +30,8 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   $retornoCad = json_decode($response,TRUE);
-  if ($retornoCad['Message']=='Registered Successfully') {
-    header('Location: login.html');
+  if ($retornoCad['data']=='User successfully registered') {
+    header('Location: listUsuarios.php');
     exit;
   }
 }

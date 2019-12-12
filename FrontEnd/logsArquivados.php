@@ -24,109 +24,121 @@ include 'listArquivados.php';
     <title> Central de Erros </title>
 </head>
 <body>
-<div style="height: 100%">
-    <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 160px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
-            <div style="font-size: 15px; text-align: right;">
-                <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
-            </div>
-            <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <hr color="#FFFFFF">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a2b8 ">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Logs</a>
-                        <a class="nav-item nav-link active" href="logs.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs</a>
-                        <a class="nav-item nav-link active" href="logsExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Logs Exclu&iacute;dos</a>
-                        <a class="nav-item nav-link active" href="logsArquivados.php" style="border-right-style: groove;color: #FFFFFF; text-decoration:none">Logs Arquivados</a>
-                        <a class="nav-item nav-link active" href="cadastroLogs.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Log</a>
-                        <?php if ($_SESSION['admin'] == 1 ) { ?>
-                            <a class="nav-item nav-link active" href="listUsuarios.php" style="color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
-                        <?php } ?>
-                    </div>
+    <div style="height: 100%">
+        <div style="background-color: #17a2b8; text-align: center">
+            <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+                <div style="font-size: 15px; text-align: right;">
+                    <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
                 </div>
-            </nav>
+                <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
+            </div>
         </div>
-    </div>
-    <br>
-    <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
-        Ol&aacute; <?php echo $_SESSION['user']; ?>,
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logs.php">Logs</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
+                    </li>
+                    <?php if ($_SESSION['admin'] == 1 ) { ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="listUsuarios.php">Gerenciar Usu&aacute;rios</a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </nav>
         <br>
-        Seu Token &eacute;: <div class="card" style="border: 0px; color: #5a6268"> <?php echo $_SESSION['Token']; ?></div>
-    </div>
-    <br>
-    <hr style="margin-left: 20px; margin-right: 20px;">
-    <div style="text-align: center; width: 100%; color: #5a6268">
-        <h4>Lista de Logs Arquivados</h4>
-    </div>
-    <br>
-    <div class="table-responsive" align="center" style="padding-left: 20px; padding-right: 20px;">
-        <table class="table table-striped">
-            <thead>
-            <tr style="text-align: center">
-                <th scope="col">Level</th>
-                <th scope="col">Descri&ccedil;&atilde;o</th>
-                <th scope="col">Eventos</th>
-                <th scope="col">Detalhes</th>
-            </tr>
-            </thead>
-            <tbody>
-            
-            <?php foreach($response['Message'] as $key => $result){ ?>
-           <tr style="text-align: center">
-                <th scope="row"><?php echo $result['level'] ?></th>
-                <td><?php echo $result['log'] ?></td>
-               <td><?php echo  $result['events'] ?></td>
-                <td>
-                    <div class="container">
-                       <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
-                           <i class="fa fa-plus"></i></a>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal<?php echo $result['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"><?php echo $result['title'] ?></h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
+            Ol&aacute; <?php echo $_SESSION['user']; ?>,
+            <br>
+            Seu Token &eacute;: <div class="card" style="border: 0px; color: #5a6268"> <?php echo $_SESSION['Token']; ?></div>
+        </div>
+        <br>
+        <hr style="margin-left: 20px; margin-right: 20px;">
+        <div style="text-align: center; width: 100%; color: #5a6268">
+            <h4>Lista de Logs Arquivados</h4>
+        </div>
+        <br>
+        <div align="center" style="padding-left: 20px; padding-right: 20px;">
+            <table class="table table-striped">
+                <thead>
+                <tr style="text-align: center">
+                    <th scope="col">Level</th>
+                    <th scope="col">Descri&ccedil;&atilde;o</th>
+                    <th scope="col">Eventos</th>
+                    <th scope="col">Detalhes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($response['data'] as $key => $result){ ?>
+               <tr style="text-align: center">
+                    <th scope="row"><?php echo $result['level'] ?></th>
+                    <td><?php echo $result['log'] ?></td>
+                   <td><?php echo  $result['events'] ?></td>
+                    <td>
+                        <div class="container">
+                           <a data-toggle="modal" data-target="#myModal<?php echo $result['id'] ?>" style="color: #17a2b8">
+                               <i class="fa fa-plus"></i></a>
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal<?php echo $result['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel"><?php echo $result['title'] ?></h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-                                </div>
-                                <div class="modal-body" >
-                                    <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left"><?php echo $result['level'] ?> em <?php echo $result['ambience'] ?></div>
                                     </div>
-                                </div>
-                                <div class="modal-body" >
-                                    <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $result['log'] ?></div>
-                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $result['level'] ?><br><br>
-                                            <b>Eventos</b><br><?php echo $result['events'] ?><br></div>
+                                    <div class="modal-body" >
+                                        <div class="row" style="text-align: justify">
+                                            <div class="col-6" style="text-align: left"><?php echo $result['level'] ?> em <?php echo $result['ambience'] ?></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-body" >
-                                    <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $result['status'] ?></div>
-                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['user']['name'] ?></div>
+                                    <div class="modal-body" >
+                                        <div class="row" style="text-align: justify">
+                                            <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $result['log'] ?></div>
+                                            <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $result['level'] ?><br><br>
+                                                <b>Eventos</b><br><?php echo $result['events'] ?><br></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body" >
+                                        <div class="row" style="text-align: justify">
+                                            <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $result['status'] ?></div>
+                                            <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['user']['name'] ?></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Fim Modal -->
-                </td>
-            </tr>
-        <?php } ?>
-            </tbody>
-        </table>
-        <br>
-        <hr>
-        <br>
-    </div>
-    <div>
-        <div style="height: 100px; background-color: #17a2b8; text-align: center">
-            <div style="color: #FFFFFF; padding-top: 35px"> Central de Erros @VHSYS</div>
+                        <!-- Fim Modal -->
+                    </td>
+                </tr>
+            <?php } ?>
+                </tbody>
+            </table>
+
+            <br>
+            <hr>
+            <br>
+        </div>
+        <div>
+            <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 15px; background-color: #17a2b8; text-align: center">
+                <div style="color: #FFFFFF;"> Central de Erros @VHSYS</div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

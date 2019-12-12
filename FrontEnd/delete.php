@@ -36,7 +36,7 @@ if ($err) {
     echo "cURL Error #:" . $err;
 } else {
     $retornoDelete = json_decode($response, TRUE);
-    if ($retornoDelete['message'] == 'Success in deleting log!') {
+    if ($retornoDelete['data'] == 'Log deleted successfully') {
         header('Location: logs.php');
         exit;
     }

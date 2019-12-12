@@ -22,28 +22,39 @@ if (!isset($_SESSION['Token'])) {
     <title> Central de Erros </title>
 </head>
 <body>
-<div class="card text-center" style="height: 100%;">
+<div style="height: 100%;">
     <div style="background-color: #17a2b8; text-align: center">
-        <div style="height: 160px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
+        <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 5px;">
             <div style="font-size: 15px; text-align: right;">
                 <a href="doLogout.php?token=<?php echo $_SESSION['Token']; ?>" style="color: white;"><img src="Icones/logout.png" alt="Sair" width=25 height=25></a>
             </div>
             <div style="font-size: 25px; color: #FFFFFF">Squad 4 - Projeto Final - Central de Erros</div>
-            <hr color="#FFFFFF">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #17a2b8 ">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Gerenciar Usu&aacute;rios</a>
-                        <a class="nav-item nav-link active" href="listUsuarios.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios</a>
-                        <a class="nav-item nav-link active" href="usuariosExcluidos.php" style="border-right-style: groove; color: #FFFFFF; text-decoration:none">Usu&aacute;rios Exclu&iacute;dos</a>
-                        <a class="nav-item nav-link active" href="cadastro.php" style="border-right-style: groove; color: white; text-decoration:none">Cadastrar Usu&aacute;rio</a>
-                        <a class="nav-item nav-link active" href="logs.php" style="color: white; text-decoration:none">Gerenciar Logs</a>
-                    </div>
-                </div>
-
-            </nav>
         </div>
     </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="listUsuarios.php">Usu&aacute;rios</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="usuariosExcluidos.php">Usu&aacute;rios Exclu&iacute;dos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="cadastro.php">Cadastrar Usu&aacute;rio</a>
+                </li>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logs.php">Gerenciar Logs</a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </nav>
     <br>
     <div style="text-align: left; padding-left: 20px; padding-right: 20px;">
         Ol&aacute; <?php echo $_SESSION['user']; ?>,
@@ -57,7 +68,7 @@ if (!isset($_SESSION['Token'])) {
     </div>
             <br>
             <br>
-            <div class="card-body" align="center">
+            <div align="center">
                 <form method="POST" action="cadastroUser.php" style="width: 70%">
                     <div  style="text-align: left;">
                         <label>Nome Completo</label>
@@ -79,12 +90,13 @@ if (!isset($_SESSION['Token'])) {
                     </div>
                     <br>
                     <button type="submit" class="btn btn-outline-secondary">Cadastrar</button>
-
+                    <br>
+                    <br>
                 </form>
             </div>
-            <div class="card text-white bg-info mb-3">
-                <div class="card-footer" style="height: 100px;">
-                    <div style="margin-top: 25px"> Central de Erros @VHSYS</div>
+            <div>
+                <div style="padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 15px; background-color: #17a2b8; text-align: center">
+                    <div style="color: #FFFFFF;"> Central de Erros @VHSYS</div>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function usersDeleted()
     {
-        return $this->model->onlyTrashed()->with('User')->get();
+        return $this->model->onlyTrashed()->get();
     }
 
     public function delete(User $user)

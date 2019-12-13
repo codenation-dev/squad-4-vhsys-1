@@ -9,7 +9,7 @@ class AmbienceType
     const HOMOLOGACAO = 'Homologacao';
     const PRODUCAO = 'Producao';
     const DESENVOLVIMENTO = 'Desenvolvimento';
-    const VAZIO = '';
+    const EMPTY = '';
 
-    public static $types = [self::HOMOLOGACAO, self::PRODUCAO, self::DESENVOLVIMENTO, self::VAZIO];
+    public static $types = [self::HOMOLOGACAO, self::PRODUCAO, self::DESENVOLVIMENTO, self::EMPTY];
 }

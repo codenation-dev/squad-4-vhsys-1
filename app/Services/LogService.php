@@ -64,12 +64,12 @@ class LogService implements LogServiceInterface
 
         $validator = $validator->validate();
 
-        if (empty($validator)) {
-            return [
-                'data' => '',
-                'code' => 200
-            ];
-        }
+//        if (empty($validator)) {
+//            return [
+//                'data' => '',
+//                'code' => 200
+//            ];
+//        }
 
         if (array_key_exists('errors', $validator)) {
             $data = $validator['message'];
@@ -93,6 +93,7 @@ class LogService implements LogServiceInterface
                 'code' => 503
             ];
         }
+
     }
 
     public function findById(int $id)

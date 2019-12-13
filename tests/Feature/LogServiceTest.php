@@ -27,7 +27,7 @@ class LogServiceTest extends TestCase
         $this->logService = new LogService(new LogRepository(new Log), $exclusionService, new UserRepository(new User()));
     }
 
-    public function AuthenticateAdmin(){
+    public function authenticateAdmin(){
         $user = factory(User::class)->create(
             ['Admin' => 1]
         );
@@ -35,7 +35,7 @@ class LogServiceTest extends TestCase
         Auth::setUser($user);
     }
 
-    public function AuthenticateUser () {
+    public function authenticateUser () {
         $user = factory(User::class)->create(
             ['Admin' => 0]
         );
@@ -43,8 +43,12 @@ class LogServiceTest extends TestCase
         Auth::setUser($user);
     }
 
+    public function createLogFake() {
+        factory(Log::class)->create();
+    }
+
     public function testAllAdmin() {
-        $this->AuthenticateAdmin();
+        $this->authenticateAdmin();
 
         $data = $this->logService->all();
 
@@ -53,7 +57,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testAllUser() {
-        $this->AuthenticateUser();
+        $this->authenticateUser();
 
         $data = $this->logService->all();
 
@@ -89,6 +93,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testFindById() {
+        $this->createLogFake();
         $log = Log::all()->random();
         $data = $this->logService->findById($log['id']);
 
@@ -107,7 +112,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testCreate() {
-        $this->AuthenticateUser();
+        $this->authenticateUser();
         $log = factory(Log::class)->make();
 
         $newLog = [
@@ -126,7 +131,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testCreateError() {
-        $this->AuthenticateUser();
+        $this->authenticateUser();
         $log = factory(Log::class)->make();
 
         $newLog = [
@@ -153,18 +158,8 @@ class LogServiceTest extends TestCase
         $this->assertEquals($data['code'], 201);
     }
 
-    public function testToFileError() {
-        $log = DB::table('logs')->select('logs.id')->latest()->first();
-        $log->id++;
-
-        $data = $this->logService->toFile($log->id);
-
-        $this->assertIsArray($data);
-        $this->assertEquals($data['code'], 404);
-    }
-
     public function testFilledUser() {
-        $this->AuthenticateUser();
+        $this->authenticateUser();
 
         $data = $this->logService->filled();
 
@@ -173,7 +168,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testFilledAdmin() {
-        $this->AuthenticateAdmin();
+        $this->authenticateAdmin();
 
         $data = $this->logService->filled();
 
@@ -187,7 +182,7 @@ class LogServiceTest extends TestCase
     }
 
     public function testDestroy() {
-        $this->AuthenticateUser();
+        $this->authenticateUser();
 
         $log = Log::all()->random();
 

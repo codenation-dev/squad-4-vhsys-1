@@ -8,7 +8,7 @@ class SearchByType
 {
     const LEVEL = 'level';
     const DESCRICAO = 'log';
-    const EVENTS = 'events';
+    const AMBIENCE = 'ambience';
 
-    public static $types = [self::LEVEL, self::EVENTS, self::DESCRICAO];
+    public static $types = [self::LEVEL, self::AMBIENCE, self::DESCRICAO];
 }

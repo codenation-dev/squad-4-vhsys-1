@@ -12,7 +12,7 @@ $factory->define(\App\Log::class, function (Faker $faker) {
         'log' => $faker->text,
         'events' => $faker->randomNumber(2),
         'ambience' => $faker->randomElement(['Homologacao', 'Producao', 'Desenvolvimento']),
-        'status' => $faker->randomElement(['Ativo', 'Pedente', 'Resolvido']),
+        'status' => $faker->randomElement(['Ativo', 'Pendente', 'Resolvido']),
         'title' => $faker->title,
         'user_created' => $faker->randomElement($users)
     ];

@@ -2,9 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Enums\Util;
 use App\Log;
 use Exception;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use function GuzzleHttp\Psr7\get_message_body_summary;
 
 class Handler extends ExceptionHandler
 {
@@ -35,6 +39,17 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        $data = [
+            'level' => 'SYSTEM',
+            'log' => $exception->getMessage(),
+            'events' => '1',
+            'ambience' => 'SYSTEM',
+            'status' => 'Ativo',
+            'title' => 'SYSTEM'
+        ];
+
+        $client = new Util();
+        $client->send_curl($data);
 
         if (app()->bound('sentry') && $this->shouldReport($exception)){
             app('sentry')->captureException($exception);

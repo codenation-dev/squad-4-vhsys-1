@@ -45,7 +45,7 @@ class LogService implements LogServiceInterface
                 'data' => $logs,
                 'code' => 200
             ];
-        } catch (QueryException $exception) {
+        } catch (\Exception $exception) {
             return [
                 'data' => 'An error occurred while processing the request',
                 'code' => 503

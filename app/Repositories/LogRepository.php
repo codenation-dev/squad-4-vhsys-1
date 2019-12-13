@@ -8,6 +8,7 @@ use App\Log;
 use App\Repositories\Contracts\LogRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Exception;
 
 class LogRepository implements LogRepositoryInterface
 {
@@ -20,10 +21,15 @@ class LogRepository implements LogRepositoryInterface
 
     public function all()
     {
-        return DB::table('logs')
-            ->join('users', 'logs.user_created', '=', 'users.id')
-            ->select('users.name', 'logs.*')
-            ->paginate(100);
+
+        return $this->model->with('User')->paginate(100)->get();
+//        return $this->model->with('User')->paginate(100);
+
+//        return DB::table('logs')
+//            ->where('')
+//            ->join('users', 'logs.user_created', '=', 'users.id')
+//            ->select('users.name', 'logs.*')
+//            ->paginate(100);
 
     }
 
@@ -76,8 +82,10 @@ class LogRepository implements LogRepositoryInterface
 
     public function allLogUser()
     {
+
         return DB::table('logs')
             ->where('logs.user_created', '=', Auth::id())
+            ->where('logs.deleted_at', '=', 'null')
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
             ->paginate(100);

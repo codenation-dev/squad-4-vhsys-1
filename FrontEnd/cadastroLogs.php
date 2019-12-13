@@ -41,9 +41,11 @@ if (!isset($_SESSION['Token'])) {
                     <li class="nav-item active">
                         <a class="nav-link" href="logs.php">Logs</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
-                    </li>
+                    <?php if ($_SESSION['admin'] == 1 ) { ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
+                        </li>
+                    <?php } ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
                     </li>

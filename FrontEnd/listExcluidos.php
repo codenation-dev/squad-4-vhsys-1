@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/exclusions/list",
+    CURLOPT_URL => "http://backacelera.codeinfinity.com.br/api/v1/exclusions/list_exclusion",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

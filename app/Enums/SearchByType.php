@@ -10,5 +10,5 @@ class SearchByType
     const DESCRICAO = 'log';
     const EVENTS = 'events';
 
-    public static $types = [self::LEVEL, self::EVENTS, self::EVENTS];
+    public static $types = [self::LEVEL, self::EVENTS, self::DESCRICAO];
 }

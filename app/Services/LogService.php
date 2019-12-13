@@ -58,7 +58,8 @@ class LogService implements LogServiceInterface
         $validator = Validator::make($queryUrl, [
             'ambience' => Rule::in(AmbienceType::$types),
             'order' => Rule::in(OrderByType::$types),
-            'search' => Rule::in(SearchByType::$types)
+            'search' => Rule::in(SearchByType::$types),
+
         ]);
 
         $validator = $validator->validate();
@@ -188,7 +189,7 @@ class LogService implements LogServiceInterface
         $data = [
             'value' => json_encode($log),
             'id_user' => Auth::id(),
-            'type' => 'User'
+            'type' => 'Logs'
         ];
 
         $exclusion = $this->exclusionService->create($data);

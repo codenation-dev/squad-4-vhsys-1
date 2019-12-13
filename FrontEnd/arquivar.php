@@ -36,7 +36,7 @@ if ($err) {
     $err;
 } else {
     $retornoArq = json_decode($response, TRUE);
-    if ($retornoArq['message'] == 'Success in archiving the log!') {
+    if ($retornoArq['data'] == 'File successfully archived' ) {
         header('Location: logs.php');
         exit;
     }

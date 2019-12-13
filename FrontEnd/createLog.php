@@ -34,7 +34,7 @@ if ($err) {
     echo "cURL Error #:" . $err;
 } else {
     $retornoCad = json_decode($response, TRUE);
-    if ($retornoCad['message'] == 'Successfully created log!') {
+    if ($retornoCad['data'] == 'Successfully created log') {
         header('Location: logs.php');
         exit;
     }

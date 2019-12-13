@@ -43,9 +43,11 @@ include 'listExcluidos.php';
                 <li class="nav-item active">
                     <a class="nav-link" href="logs.php">Logs</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
-                </li>
+                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
+                    </li>
+                <?php } ?>
                 <li class="nav-item active">
                     <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
                 </li>
@@ -85,41 +87,41 @@ include 'listExcluidos.php';
             <tbody>
 
         <?php foreach($response['data'] as $key => $result){ ?>
-            <?php if ($result['type'] == 'Log') { ?>
+            <?php if ($result['type'] == 'Logs') { ?>
             <?php $teste = json_decode($result['value']); ?>
            <tr style="text-align: center">
-                <th scope="row"><?php echo $teste->level ?></th>
-                <td><?php echo $teste->log ?></td>
-               <td><?php echo $teste->events ?></td>
+                <th scope="row"><?php echo $teste->data->level ?></th>
+                <td><?php echo $teste->data->log ?></td>
+               <td><?php echo $teste->data->events ?></td>
                 <td>
                     <div class="container">
-                       <a data-toggle="modal" data-target="#myModal<?php echo $teste->id ?>" style="color: #17a2b8">
+                       <a data-toggle="modal" data-target="#myModal<?php echo $teste->data->id ?>" style="color: #17a2b8">
                            <i class="fa fa-plus"></i></a>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal<?php echo $teste->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="myModal<?php echo $teste->data->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"><?php echo $teste->title ?></h4>
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $teste->data->title ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left"><?php echo $teste->level . " em ". $teste->ambience ?></div>
+                                        <div class="col-6" style="text-align: left"><?php echo $teste->data->level . " em ". $teste->data->ambience ?></div>
                                     </div>
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $teste->log ?></div>
-                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $teste->level ?><br><br>
-                                            <b>Eventos</b><br><?php echo $teste->events ?><br></div>
+                                        <div class="col-6" style="text-align: left; float: left"><b>Descri&ccedil;&atilde;o</b><br> <?php echo $teste->data->log ?></div>
+                                        <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Level</b><br><?php echo $teste->data->level ?><br><br>
+                                            <b>Eventos</b><br><?php echo $teste->data->events ?><br></div>
                                     </div>
                                 </div>
                                 <div class="modal-body" >
                                     <div class="row" style="text-align: justify">
-                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $teste->status ?></div>
+                                        <div class="col-6" style="text-align: left; float: left"><b>Status</b><br><?php echo $teste->data->status ?></div>
                                         <div class="col-6" style="color: #5a6268; text-align: right; float: right"><b>Usu&aacute;rio:</b><br><?php echo $result['name'] ?></div>
                                     </div>
                                 </div>

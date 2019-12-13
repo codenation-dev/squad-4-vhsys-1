@@ -6,7 +6,7 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-include 'listLogs.php';
+include 'search.php';
 
 ?>
 

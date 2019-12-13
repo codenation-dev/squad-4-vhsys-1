@@ -36,7 +36,7 @@ if ($err) {
 } else {
     $retornoDelUser = json_decode($response, TRUE);
 
-    if ($retornoDelUser['Message'] == 'Deleted!') {
+    if ($retornoDelUser['data'] == 'User deleted successfully') {
 
         header('Location: listUsuarios.php');
         exit;

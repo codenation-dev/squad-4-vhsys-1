@@ -74,10 +74,9 @@ class LogRepository implements LogRepositoryInterface
 
     public function allLogUser()
     {
-
         return DB::table('logs')
             ->where('logs.user_created', '=', Auth::id())
-            ->where('logs.deleted_at', '=', 'null')
+            ->where('logs.deleted_at', '=', null)
             ->join('users', 'logs.user_created', '=', 'users.id')
             ->select('users.name', 'logs.*')
             ->paginate(100);

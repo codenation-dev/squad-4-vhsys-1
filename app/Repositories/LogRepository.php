@@ -21,7 +21,7 @@ class LogRepository implements LogRepositoryInterface
 
     public function all()
     {
-        return $this->model->with('User')->paginate(100)->get();
+        return $this->model->with('User')->paginate(100);
 
     }
 

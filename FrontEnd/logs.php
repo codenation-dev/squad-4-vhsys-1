@@ -6,7 +6,7 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
-include 'listLogs.php';
+include 'search.php';
 
 ?>
 
@@ -47,14 +47,12 @@ include 'listLogs.php';
                     <li class="nav-item active">
                         <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
                     </li>
-                <?php } ?>
-                <li class="nav-item active">
-                    <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
-                </li>
-                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="listUsuarios.php">Gerenciar Usu&aacute;rios</a>
                     </li>
@@ -70,35 +68,37 @@ include 'listLogs.php';
     </div>
     <br>
     <hr>
-    <form class="form-inline" name="search" method="GET" action="search.php" style="padding-left: 20px;">
-        <div class="form-group mb-2">
-            <select class="form-control" id="ambience" name="ambience">
-                <option value="">Origem:  </option>
-                <option value="Produção">Produ&ccedil;&atilde;o </option>
-                <option value="Homologação">Homologa&ccedil;&atilde;o</option>
-                <option value="Desenvolvimento">Desenvolvimento</option>
-            </select>
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <select class="form-control" id="order" name="order">
-                <option value="">Ordenar por: </option>
-                <option value="level">Level</option>
-                <option value="events">Eventos</option>
-            </select>
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <select class="form-control" name="search">
-                <option value="">Burcar por: </option>
-                <option value="level">Level</option>
-                <option value="log">Descri&ccedil;&atilde;o</option>
-                <option value="ambience">Origem</option>
-            </select>
-            <div class="input-group"">
-                <input class="form-control" type="search" placeholder="Search" name="search_name">
-                <input class="btn btn-primary" type="submit">
+    <?php if ($_SESSION['admin'] == 1 ) { ?>
+        <form class="form-inline" name="search" method="GET" action="" style="padding-left: 20px;">
+            <div class="form-group mb-2">
+                <select class="form-control" id="ambience" name="ambience">
+                    <option value="">Origem:  </option>
+                    <option value="Produção">Produ&ccedil;&atilde;o </option>
+                    <option value="Homologação">Homologa&ccedil;&atilde;o</option>
+                    <option value="Desenvolvimento">Desenvolvimento</option>
+                </select>
             </div>
-        </div>
-    </form>
+            <div class="form-group mx-sm-3 mb-2">
+                <select class="form-control" id="order" name="order">
+                    <option value="">Ordenar por: </option>
+                    <option value="level">Level</option>
+                    <option value="events">Eventos</option>
+                </select>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <select class="form-control" name="search">
+                    <option value="">Burcar por: </option>
+                    <option value="level">Level</option>
+                    <option value="log">Descri&ccedil;&atilde;o</option>
+                    <option value="ambience">Origem</option>
+                </select>
+                <div class="input-group"">
+                    <input class="form-control" type="search" placeholder="Search" name="search_name">
+                    <input class="btn btn-primary" type="submit">
+                </div>
+            </div>
+        </form>
+    <?php } ?>
 <br>
 <div align="center" style="padding-left: 20px; padding-right: 20px;">
     <table class="table table-striped">
@@ -117,7 +117,7 @@ include 'listLogs.php';
         </tr>
         </thead>
         <tbody>
-        <?php foreach($response['data']['data'] as $result){ ?>
+        <?php foreach($response['data'] as $result){ ?>
 
             <tr style="text-align: center">
                 <?php if ($_SESSION['admin'] == 1 ) { ?>

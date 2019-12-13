@@ -6,6 +6,10 @@ if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
 
+if ($_SESSION['admin'] == 0) {
+    header("location: logs.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,11 +51,10 @@ if (!isset($_SESSION['Token'])) {
                 <li class="nav-item active">
                     <a class="nav-link" href="cadastro.php">Cadastrar Usu&aacute;rio</a>
                 </li>
-                <?php if ($_SESSION['admin'] == 1 ) { ?>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="logs.php">Gerenciar Logs</a>
-                    </li>
-                <?php } ?>
+                <li class="nav-item active">
+                    <a class="nav-link" href="logs.php">Gerenciar Logs</a>
+                </li>
+
             </ul>
         </div>
     </nav>

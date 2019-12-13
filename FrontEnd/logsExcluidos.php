@@ -5,6 +5,9 @@ session_start();
 if (!isset($_SESSION['Token'])) {
     header("location: index.html");
 }
+if ($_SESSION['admin'] == 0) {
+    header("location: logs.php");
+}
 
 include 'listExcluidos.php';
 
@@ -47,14 +50,12 @@ include 'listExcluidos.php';
                     <li class="nav-item active">
                         <a class="nav-link" href="logsExcluidos.php">Logs Exclu&iacute;dos</a>
                     </li>
-                <?php } ?>
-                <li class="nav-item active">
-                    <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
-                </li>
-                <?php if ($_SESSION['admin'] == 1 ) { ?>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logsArquivados.php">Logs Arquivados</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cadastroLogs.php">Cadastrar Logs</a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="listUsuarios.php">Gerenciar Usu&aacute;rios</a>
                     </li>

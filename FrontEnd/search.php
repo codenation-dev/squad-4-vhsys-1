@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $url = "http://backacelera.codeinfinity.com.br/api/v1/logs/search";
 if(!empty($_GET)) {
     $uqeryString = http_build_query($_GET);
@@ -38,7 +36,4 @@ curl_close($curl);
 
 if (! $err) {
     $response = json_decode($response, TRUE);
-    print_r($response);die;
-    header('Location: logsSearch.php');
-    exit;
 }

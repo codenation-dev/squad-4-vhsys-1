@@ -32,16 +32,16 @@ services:
       - ./../:/var/www
       - /tmp:/tmp
       - /etc/hosts:/etc/hosts:ro
-  portainer:
-    image: portainer/portainer:latest
-    container_name: "portainer"
-    restart: always
-    ports:
-      - "81:9000"
-    command: -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+#  portainer:
+#    image: portainer/portainer:latest
+#    container_name: "portainer"
+#    restart: always
+#    ports:
+#      - "81:9000"
+#    command: -H unix:///var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - portainer_data:/data
 
   mysql:
     image: mysql

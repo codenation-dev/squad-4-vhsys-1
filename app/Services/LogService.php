@@ -11,8 +11,6 @@ use App\Repositories\Contracts\LogRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Services\Contracts\ExclusionServiceInterface;
 use App\Services\Contracts\LogServiceInterface;
-use App\Services\Contracts\UserServiceInterface;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;

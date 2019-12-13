@@ -42,7 +42,7 @@ class ExclusionService implements ExclusionServiceInterface
             ];
         } catch (QueryException $exception) {
             return [
-                'data' => 'An error occured while processing the request',
+                'data' => 'An error occurred while processing the request',
                 'code' => 503
             ];
         }

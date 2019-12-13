@@ -191,14 +191,4 @@ class LogServiceTest extends TestCase
         $this->assertIsArray($data);
         $this->assertEquals($data['code'], 200);
     }
-
-    public function testDestroyError() {
-        $log = DB::table('logs')->select('logs.id')->latest()->first();
-        $log->id++;
-
-        $data = $this->logService->destroy($log->id);
-
-        $this->assertIsArray($data);
-        $this->assertEquals($data['code'], 404);
-    }
 }

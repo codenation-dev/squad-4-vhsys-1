@@ -1,0 +1,3401 @@
+{
+	"info": {
+		"_postman_id": "b018e29c-cc38-4824-91ce-3578436ee6d3",
+		"name": "Squad 4 API Acelera DEV",
+		"description": "Documentação API registro de LOGS\n\nas rotas sao protegidas por Token de autentição.\nperfis de acesso Administrador tem acesso a todas as funcionalidades do sistema.\nperfis de Usuario tem acesso somente as rotas para listar seus logs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Public Routes",
+			"item": [
+				{
+					"name": "Request Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "nunooo@hotmail.com.br",
+									"description": "E-mail cadastrado (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"description": "Senha cadastrada (campo obrigatório).",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"requestToken"
+							]
+						},
+						"description": "Este endpoint retorna um token para acesso as rotas"
+					},
+					"response": [
+						{
+							"name": "Request Token error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "E-mail cadastrado (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234567891",
+											"description": "Senha cadastrada (campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"requestToken"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:57:08 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Username or password is invalid\"\n}"
+						},
+						{
+							"name": "Request Token success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "E-mail cadastrado (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Senha cadastrada (campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"requestToken"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:56:04 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"user\": \"Jaci Santos\",\n        \"admin\": 0,\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzY5NjQsImV4cCI6MTU3NjE4MDU2NCwibmJmIjoxNTc2MTc2OTY0LCJqdGkiOiIxSWJRcXRWd1VzSXZJek9PIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.hNBEssrUrYlmNs7OtrNzDNjHbv7UdhfyzNUOlG2P8fk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Jaci Santos",
+									"description": "Informe seu nome (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "nunooo@hotmail.com.br",
+									"description": "Informe seu e-mail (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"description": "Informe uma senha (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "admin",
+									"value": "0",
+									"description": "Informa se o usuário é administrador (campo opcional padrão usuario).",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/registerUser",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"registerUser"
+							]
+						},
+						"description": "Este endpoint cria um usuário para acesso.\n"
+					},
+					"response": [
+						{
+							"name": "Register User user registred",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jaci Santos",
+											"description": "Informe seu nome (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "Informe seu e-mail (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Informe uma senha (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "admin",
+											"value": "0",
+											"description": "Informa se o usuário é administrador (campo opcional padrão usuario).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/registerUser",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"registerUser"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:51:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"User already registered\"\n}"
+						},
+						{
+							"name": "Register User error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jaci Santos",
+											"description": "Informe seu nome (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "Informe seu e-mail (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Informe uma senha (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "admin",
+											"value": "0",
+											"description": "Informa se o usuário é administrador (campo opcional padrão usuario).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/registerUser",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"registerUser"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:53:27 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Server Error\"\n}"
+						},
+						{
+							"name": "Register User success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Jaci Santos",
+											"description": "Informe seu nome (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "Informe seu e-mail (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Informe uma senha (campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/registerUser",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"registerUser"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:47:17 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"User successfully registered\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Rotas Publicas\n",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "User Routes",
+			"item": [
+				{
+					"name": "List All User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"list"
+							]
+						},
+						"description": "Este endpoint retorna uma lista de usuarios cadastrados"
+					},
+					"response": [
+						{
+							"name": "List All User error admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 18:59:06 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"User does not have administrator profile\"\n}"
+						},
+						{
+							"name": "List All User success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:02:01 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Roberta Wiegand\",\n            \"email\": \"jaskolski.nasir@example.net\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 2,\n            \"name\": \"America Jast\",\n            \"email\": \"idella.turner@example.com\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Gage Franecki\",\n            \"email\": \"issac.bergnaum@example.org\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Jennifer Brakus\",\n            \"email\": \"lexi69@example.org\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 5,\n            \"name\": \"Autumn Buckridge\",\n            \"email\": \"karolann.kovacek@example.net\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Dr. Cameron Dare\",\n            \"email\": \"chelsie.christiansen@example.com\",\n            \"email_verified_at\": \"2019-12-12 18:41:10\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Lavon Harber DDS\",\n            \"email\": \"ihomenick@example.net\",\n            \"email_verified_at\": \"2019-12-12 18:41:10\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 8,\n            \"name\": \"Prof. Gene Swaniawski\",\n            \"email\": \"cristopher.doyle@example.net\",\n            \"email_verified_at\": \"2019-12-12 18:41:10\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Mr. Johnny Bruen DVM\",\n            \"email\": \"reynolds.alice@example.com\",\n            \"email_verified_at\": \"2019-12-12 18:41:10\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Cara Cassin II\",\n            \"email\": \"maybelle92@example.com\",\n            \"email_verified_at\": \"2019-12-12 18:41:10\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 18:41:10\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 11,\n            \"name\": \"Roôana Subtil de Oliveira\",\n            \"email\": \"rosubtil@gmail.com\",\n            \"email_verified_at\": null,\n            \"admin\": 1,\n            \"created_at\": \"2019-12-12 18:44:21\",\n            \"updated_at\": \"2019-12-12 18:44:21\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        },\n        {\n            \"id\": 12,\n            \"name\": \"Jaci Santos\",\n            \"email\": \"nunooo@hotmail.com.br\",\n            \"email_verified_at\": null,\n            \"admin\": 1,\n            \"created_at\": \"2019-12-12 18:47:17\",\n            \"updated_at\": \"2019-12-12 18:47:17\",\n            \"deleted_at\": null,\n            \"id_user_alteracao\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List  User By ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list/30",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"list",
+								"30"
+							]
+						},
+						"description": "Este endpoint retorna um usuario especifico pelo id"
+					},
+					"response": [
+						{
+							"name": "List  User By ID succes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list/3",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"list",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:06:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"name\": \"Gage Franecki\",\n        \"email\": \"issac.bergnaum@example.org\",\n        \"email_verified_at\": \"2019-12-12 18:41:09\",\n        \"admin\": 0,\n        \"created_at\": \"2019-12-12 18:41:10\",\n        \"updated_at\": \"2019-12-12 18:41:10\",\n        \"deleted_at\": null,\n        \"id_user_alteracao\": null\n    }\n}"
+						},
+						{
+							"name": "List  User By ID error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/list/30",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"list",
+										"30"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:07:06 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Not found user\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update  User By ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "joao 2 de 2",
+									"description": "Informe seu nome (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "nunooo@hotmail.com.br25",
+									"description": "Informe seu e-mail (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"description": "Informe uma senha (campo obrigatório).",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/update/30",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update",
+								"30"
+							]
+						},
+						"description": "Este endpoint Atualiza um usuário "
+					},
+					"response": [
+						{
+							"name": "Update  User By ID success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "joao 2 de 2",
+											"description": "Informe seu nome (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br25",
+											"description": "Informe seu e-mail (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Informe uma senha (campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/update/1",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"update",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:09:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"user updated successfully\"\n}"
+						},
+						{
+							"name": "Update  User By ID error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "joao 2 de 2",
+											"description": "Informe seu nome (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br25",
+											"description": "Informe seu e-mail (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Informe uma senha (campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/update/30",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"update",
+										"30"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:10:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Not found user\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete  User By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/delete/30",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"30"
+							]
+						},
+						"description": "Este endpoint deleta um usuario "
+					},
+					"response": [
+						{
+							"name": "Delete  User By ID error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/delete/30",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"delete",
+										"30"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:11:36 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Not found user\"\n}"
+						},
+						{
+							"name": "Delete  User By ID success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/delete/4",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"delete",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:11:11 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"User deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List All User deleted",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/listdeleted",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"listdeleted"
+							]
+						},
+						"description": "Este endpoint retorna uma lista de usuarios excluidos"
+					},
+					"response": [
+						{
+							"name": "List All User deleted success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/listdeleted",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"listdeleted"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:13:24 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"Jennifer Brakus\",\n            \"email\": \"lexi69@example.org\",\n            \"email_verified_at\": \"2019-12-12 18:41:09\",\n            \"admin\": 0,\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 19:11:11\",\n            \"deleted_at\": \"2019-12-12 19:11:11\",\n            \"id_user_alteracao\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "List All User deleted error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzcxMDcsImV4cCI6MTU3NjE4MDcwNywibmJmIjoxNTc2MTc3MTA3LCJqdGkiOiJoSjV4MU8zU3lPdllwcG9tIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.XVpDZc2-Gl9OhX61OsWSR2N4RippN0CnaRgwei1f-ng",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/users/listdeleted",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"listdeleted"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:12:20 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Server Error\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Log routes",
+			"item": [
+				{
+					"name": "Create Log",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "level",
+									"value": "Warning",
+									"description": "Level do log (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "log",
+									"value": "120.0.01 teste ",
+									"description": "Descrição do log (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "events",
+									"value": "11",
+									"description": "Quantas vezes ocorreu este log (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "ambience",
+									"value": "Desenvolvimento",
+									"description": "Origem do log (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "Ativo",
+									"description": "Status do log (campo obrigatório).",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "5",
+									"description": "Titulo do log(campo obrigatório).",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/create",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"create"
+							]
+						},
+						"description": "Este endpoint Cria um log"
+					},
+					"response": [
+						{
+							"name": "Create Log error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "level",
+											"value": "Warning",
+											"description": "Level do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "log",
+											"value": "120.0.01 teste ",
+											"description": "Descrição do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "events",
+											"value": "11",
+											"description": "Quantas vezes ocorreu este log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "ambience",
+											"value": "Desenvolvimento",
+											"description": "Origem do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "Ativo",
+											"description": "Status do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "5",
+											"description": "Titulo do log(campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/create",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"create"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:24:01 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Server Error\"\n}"
+						},
+						{
+							"name": "Create Log success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "level",
+											"value": "Warning",
+											"description": "Level do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "log",
+											"value": "120.0.01 teste ",
+											"description": "Descrição do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "events",
+											"value": "11",
+											"description": "Quantas vezes ocorreu este log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "ambience",
+											"value": "Desenvolvimento",
+											"description": "Origem do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "Ativo",
+											"description": "Status do log (campo obrigatório).",
+											"type": "text"
+										},
+										{
+											"key": "title",
+											"value": "5",
+											"description": "Titulo do log(campo obrigatório).",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/create",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:21:37 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Successfully created log\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/list",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"list"
+							]
+						},
+						"description": "Este endpoint retorna uma lista de logs, quantidade pagina 100 por página"
+					},
+					"response": [
+						{
+							"name": "List logs success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/list",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:26:34 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"name\": \"Autumn Buckridge\",\n                \"id\": 1,\n                \"level\": \"Bug\",\n                \"log\": \"Minus nam optio fugit ea magnam expedita ducimus iste. Est dolore ipsam cum labore consequatur quia. Et aut nisi velit dicta.\",\n                \"events\": 45,\n                \"ambience\": \"Producao\",\n                \"status\": \"Pedente\",\n                \"title\": \"Prof.\",\n                \"user_created\": 5,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\"\n            },\n            {\n                \"name\": \"joao 2 de 2\",\n                \"id\": 2,\n                \"level\": \"Bug\",\n                \"log\": \"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\",\n                \"events\": 41,\n                \"ambience\": \"Homologacao\",\n                \"status\": \"Resolvido\",\n                \"title\": \"Prof.\",\n                \"user_created\": 1,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\"\n            },\n            {\n                \"name\": \"Jennifer Brakus\",\n                \"id\": 3,\n                \"level\": \"Warning\",\n                \"log\": \"Maiores eos enim quam aut. Quia ut dolores neque distinctio eveniet voluptas. Ipsam et quidem atque aliquam placeat vero similique assumenda. Atque vel excepturi quae quibusdam omnis in est.\",\n                \"events\": 39,\n                \"ambience\": \"Producao\",\n                \"status\": \"Ativo\",\n                \"title\": \"Mrs.\",\n                \"user_created\": 4,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\"\n            },\n            {\n                \"name\": \"Dr. Cameron Dare\",\n                \"id\": 4,\n                \"level\": \"Error\",\n                \"log\": \"Pariatur blanditiis deleniti aut quas corporis consequuntur id. Magni laborum unde odio aut. Sequi dicta rerum iure. Nihil minima rerum et ut provident quod.\",\n                \"events\": 10,\n                \"ambience\": \"Desenvolvimento\",\n                \"status\": \"Resolvido\",\n                \"title\": \"Miss\",\n                \"user_created\": 6,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\"\n            },\n            {\n                \"name\": \"Dr. Cameron Dare\",\n                \"id\": 5,\n                \"level\": \"Bug\",\n                \"log\": \"Autem natus alias perspiciatis quaerat repudiandae et animi nihil. Ut architecto aut veniam. Alias officiis nesciunt maxime et aut architecto. Sit vel nihil doloribus et blanditiis sequi maiores.\",\n                \"events\": 19,\n                \"ambience\": \"Homologacao\",\n                \"status\": \"Pedente\",\n                \"title\": \"Prof.\",\n                \"user_created\": 6,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\"\n            },\n            {\n                \"name\": \"Lavon Harber DDS\",\n                \"id\": 6,\n                \"level\": \"Warning\",\n                \"log\": \"Consequatur consequuntur et impedit odio. Facere libero consequatur doloribus vel. Accusantium quia corporis consequatur tenetur. Quisquam sed sit repellat est aut est mollitia voluptatum.\",\n                \"events\": 51,\n                \"ambience\": \"Producao\",\n                \"status\": \"Pedente\",\n                \"title\": \"Dr.\",\n                \"user_created\": 7,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:11\",\n                \"updated_at\": \"2019-12-12 18:41:11\"\n            },\n            {\n                \"name\": \"Mr. Johnny Bruen DVM\",\n                \"id\": 7,\n                \"level\": \"Bug\",\n                \"log\": \"Voluptatem expedita eligendi amet quaerat. Velit iste earum dolores quo hic nisi. Alias quo aut ducimus labore architecto.\",\n                \"events\": 56,\n                \"ambience\": \"Producao\",\n                \"status\": \"Resolvido\",\n                \"title\": \"Dr.\",\n                \"user_created\": 9,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:11\",\n                \"updated_at\": \"2019-12-12 18:41:11\"\n            },\n            {\n                \"name\": \"Prof. Gene Swaniawski\",\n                \"id\": 8,\n                \"level\": \"Error\",\n                \"log\": \"Ipsum sint magni nemo molestiae quae eaque amet illum. Ut magnam et sed cumque. Et saepe dolor aut ratione ratione. Natus quae asperiores et nemo placeat excepturi.\",\n                \"events\": 66,\n                \"ambience\": \"Homologacao\",\n                \"status\": \"Ativo\",\n                \"title\": \"Dr.\",\n                \"user_created\": 8,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:11\",\n                \"updated_at\": \"2019-12-12 18:41:11\"\n            },\n            {\n                \"name\": \"Gage Franecki\",\n                \"id\": 9,\n                \"level\": \"Warning\",\n                \"log\": \"Sapiente natus veniam cumque voluptas quidem id. Dolor soluta doloremque officiis officia quia. Expedita harum omnis dolorem ipsa cum magnam quas. Nihil sed et aut explicabo.\",\n                \"events\": 2,\n                \"ambience\": \"Homologacao\",\n                \"status\": \"Pedente\",\n                \"title\": \"Miss\",\n                \"user_created\": 3,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:11\",\n                \"updated_at\": \"2019-12-12 18:41:11\"\n            },\n            {\n                \"name\": \"America Jast\",\n                \"id\": 10,\n                \"level\": \"Error\",\n                \"log\": \"Et ut voluptatem inventore rerum. Vitae commodi odio assumenda quae inventore id. Nostrum nam quam commodi vel consequatur.\",\n                \"events\": 36,\n                \"ambience\": \"Homologacao\",\n                \"status\": \"Resolvido\",\n                \"title\": \"Dr.\",\n                \"user_created\": 2,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 18:41:11\",\n                \"updated_at\": \"2019-12-12 18:41:11\"\n            },\n            {\n                \"name\": \"Jaci Santos\",\n                \"id\": 11,\n                \"level\": \"Warning\",\n                \"log\": \"120.0.01 teste\",\n                \"events\": 11,\n                \"ambience\": \"Desenvolvimento\",\n                \"status\": \"Ativo\",\n                \"title\": \"5\",\n                \"user_created\": 12,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 19:21:37\",\n                \"updated_at\": \"2019-12-12 19:21:37\"\n            },\n            {\n                \"name\": \"Jaci Santos\",\n                \"id\": 12,\n                \"level\": \"Warning\",\n                \"log\": \"120.0.01 teste\",\n                \"events\": 11,\n                \"ambience\": \"Desenvolvimento\",\n                \"status\": \"Ativo\",\n                \"title\": \"5\",\n                \"user_created\": 12,\n                \"user_updated\": null,\n                \"deleted_at\": null,\n                \"created_at\": \"2019-12-12 19:22:33\",\n                \"updated_at\": \"2019-12-12 19:22:33\"\n            }\n        ],\n        \"first_page_url\": \"http://backacelera.codeinfinity.com.br/api/v1/logs/list?page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http://backacelera.codeinfinity.com.br/api/v1/logs/list?page=1\",\n        \"next_page_url\": null,\n        \"path\": \"http://backacelera.codeinfinity.com.br/api/v1/logs/list\",\n        \"per_page\": 100,\n        \"prev_page_url\": null,\n        \"to\": 12,\n        \"total\": 12\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Arquive Log",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/tofile/4",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"tofile",
+								"4"
+							]
+						},
+						"description": "Este endpoint arquiva um log"
+					},
+					"response": [
+						{
+							"name": "Arquive Log success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/tofile/4",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"tofile",
+										"4"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:29:04 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"File successfully archived\"\n}"
+						},
+						{
+							"name": "Arquive Log error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/tofile/26",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"tofile",
+										"26"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:28:30 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Not found log\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Log",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/delete/3",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"delete",
+								"3"
+							]
+						},
+						"description": "Este endpoint Deleta um log "
+					},
+					"response": [
+						{
+							"name": "Delete Log success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/delete/2",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:41:52 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Log deleted successfully\"\n}"
+						},
+						{
+							"name": "Delete Log error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/delete/2",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:30:40 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Could not create exclusion, an error occurred while processing data\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Log",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzU0OTAxNTIsImV4cCI6MTU3NTQ5Mzc1MiwibmJmIjoxNTc1NDkwMTUyLCJqdGkiOiJkd25OTEtLbVUzblFsRWlWIiwic3ViIjoyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.q9ehFzYzDUauOIuKJpJb0VBsG-ByC3sgeURTeCsexBA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/search",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"search"
+							]
+						},
+						"description": "Este endpoint filtra grupo de logs "
+					},
+					"response": [
+						{
+							"name": "erro",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"requestToken"
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, X-Requested-With, Application, api_key"
+								},
+								{
+									"key": "Allow",
+									"value": "POST"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 09 Nov 2019 13:40:33 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The GET method is not supported for this route. Supported methods: POST.\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\MethodNotAllowedHttpException\",\n    \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php\",\n    \"line\": 256,\n    \"trace\": [\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php\",\n            \"line\": 242,\n            \"function\": \"methodNotAllowed\",\n            \"class\": \"Illuminate\\\\Routing\\\\RouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php\",\n            \"line\": 176,\n            \"function\": \"getRouteForMethods\",\n            \"class\": \"Illuminate\\\\Routing\\\\RouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 634,\n            \"function\": \"match\",\n            \"class\": \"Illuminate\\\\Routing\\\\RouteCollection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 623,\n            \"function\": \"findRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 612,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 176,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 30,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 163,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 53,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 163,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 53,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 163,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 53,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 163,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\CheckForMaintenanceMode\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 53,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/fideloper/proxy/src/TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 163,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 53,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 104,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 151,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 116,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/html/backacelera/public/index.php\",\n            \"line\": 55,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Error request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "",
+											"description": "E-Mail Cadastrado",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "",
+											"description": "Senha cadastrada",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"requestToken"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, X-Requested-With, Application, api_key"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Oct 2019 01:03:53 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ERROR\",\n    \"message\": \"Not Authorized\"\n}"
+						},
+						{
+							"name": "Request token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "nunooo@hotmail.com.br",
+											"description": "E-Mail Cadastrado",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"description": "Senha cadastrada",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/requestToken",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"requestToken"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, X-Requested-With, Application, api_key"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Oct 2019 01:04:44 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"OK\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzIzMTEwODQsImV4cCI6MTU3MjMxNDY4NCwibmJmIjoxNTcyMzExMDg0LCJqdGkiOiJNb25YUDZFdHJyVTFyRExWIiwic3ViIjo0LCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.lMexNf5fqBLepN__JF0pXOUDYgqx-9bEXbC1PgfoXRg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List log by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/list/9",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"list",
+								"9"
+							]
+						},
+						"description": "Este endpoint retorna um log especifico pelo id"
+					},
+					"response": [
+						{
+							"name": "List log by ID success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/list/9",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"list",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:49:37 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 9,\n        \"level\": \"Warning\",\n        \"log\": \"Sapiente natus veniam cumque voluptas quidem id. Dolor soluta doloremque officiis officia quia. Expedita harum omnis dolorem ipsa cum magnam quas. Nihil sed et aut explicabo.\",\n        \"events\": 2,\n        \"ambience\": \"Homologacao\",\n        \"status\": \"Pedente\",\n        \"title\": \"Miss\",\n        \"user_created\": 3,\n        \"user_updated\": null,\n        \"deleted_at\": null,\n        \"created_at\": \"2019-12-12 18:41:11\",\n        \"updated_at\": \"2019-12-12 18:41:11\"\n    }\n}"
+						},
+						{
+							"name": "List log by ID error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/list/27",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"list",
+										"27"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:49:16 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"Not found log\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List logs archived",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/filled",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logs",
+								"filled"
+							]
+						},
+						"description": "Este endpoint retorna todos os logs arquivados"
+					},
+					"response": [
+						{
+							"name": "List logs archived success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/logs/filled",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"logs",
+										"filled"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:50:27 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 4,\n            \"level\": \"Error\",\n            \"log\": \"Pariatur blanditiis deleniti aut quas corporis consequuntur id. Magni laborum unde odio aut. Sequi dicta rerum iure. Nihil minima rerum et ut provident quod.\",\n            \"events\": 10,\n            \"ambience\": \"Desenvolvimento\",\n            \"status\": \"Resolvido\",\n            \"title\": \"Miss\",\n            \"user_created\": 6,\n            \"user_updated\": null,\n            \"deleted_at\": \"2019-12-12 19:29:04\",\n            \"created_at\": \"2019-12-12 18:41:10\",\n            \"updated_at\": \"2019-12-12 19:29:04\",\n            \"user\": {\n                \"id\": 6,\n                \"name\": \"Dr. Cameron Dare\",\n                \"email\": \"chelsie.christiansen@example.com\",\n                \"email_verified_at\": \"2019-12-12 18:41:10\",\n                \"admin\": 0,\n                \"created_at\": \"2019-12-12 18:41:10\",\n                \"updated_at\": \"2019-12-12 18:41:10\",\n                \"deleted_at\": null,\n                \"id_user_alteracao\": null\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Exlusion Routes",
+			"item": [
+				{
+					"name": "List Exclusions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://backacelera.codeinfinity.com.br/api/v1/exclusions/list_exclusion",
+							"protocol": "http",
+							"host": [
+								"backacelera",
+								"codeinfinity",
+								"com",
+								"br"
+							],
+							"path": [
+								"api",
+								"v1",
+								"exclusions",
+								"list_exclusion"
+							]
+						},
+						"description": "Este endpoint retorna uma lista de tudo que foi excluido do sistema\n"
+					},
+					"response": [
+						{
+							"name": "List Exclusions success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9iYWNrYWNlbGVyYS5jb2RlaW5maW5pdHkuY29tLmJyXC9hcGlcL3YxXC9yZXF1ZXN0VG9rZW4iLCJpYXQiOjE1NzYxNzgxOTQsImV4cCI6MTU3NjE4MTc5NCwibmJmIjoxNTc2MTc4MTk0LCJqdGkiOiI2VG15R1ZvVjZFcDJRQjVMIiwic3ViIjoxMiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._FOeUZgb2iAPlz_19dPAb85czUlxXmqzRYeixP8bJO0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://backacelera.codeinfinity.com.br/api/v1/exclusions/list_exclusion",
+									"protocol": "http",
+									"host": [
+										"backacelera",
+										"codeinfinity",
+										"com",
+										"br"
+									],
+									"path": [
+										"api",
+										"v1",
+										"exclusions",
+										"list_exclusion"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.14.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 12 Dec 2019 19:52:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "api_key, Authorization,Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 1,\n            \"value\": \"{\\\"id\\\":4,\\\"name\\\":\\\"Jennifer Brakus\\\",\\\"email\\\":\\\"lexi69@example.org\\\",\\\"email_verified_at\\\":\\\"2019-12-12 18:41:09\\\",\\\"admin\\\":0,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"deleted_at\\\":null,\\\"id_user_alteracao\\\":null}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:11:11\",\n            \"updated_at\": \"2019-12-12 19:11:11\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 2,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:37:25\",\n            \"updated_at\": \"2019-12-12 19:37:25\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 3,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:37:36\",\n            \"updated_at\": \"2019-12-12 19:37:36\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 4,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:37:53\",\n            \"updated_at\": \"2019-12-12 19:37:53\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 5,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:38:47\",\n            \"updated_at\": \"2019-12-12 19:38:47\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 6,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:39:20\",\n            \"updated_at\": \"2019-12-12 19:39:20\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 7,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:41:02\",\n            \"updated_at\": \"2019-12-12 19:41:02\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 8,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:41:52\",\n            \"updated_at\": \"2019-12-12 19:41:52\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 9,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:42:58\",\n            \"updated_at\": \"2019-12-12 19:42:58\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 10,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:43:29\",\n            \"updated_at\": \"2019-12-12 19:43:29\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 11,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":2,\\\"level\\\":\\\"Bug\\\",\\\"log\\\":\\\"Eos repellendus doloremque et. Eos fugiat quas provident. Dolorum voluptatem culpa ea odit.\\\",\\\"events\\\":41,\\\"ambience\\\":\\\"Homologacao\\\",\\\"status\\\":\\\"Resolvido\\\",\\\"title\\\":\\\"Prof.\\\",\\\"user_created\\\":1,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:44:16\",\n            \"updated_at\": \"2019-12-12 19:44:16\"\n        },\n        {\n            \"name\": \"Jaci Santos\",\n            \"id\": 12,\n            \"value\": \"{\\\"data\\\":{\\\"id\\\":3,\\\"level\\\":\\\"Warning\\\",\\\"log\\\":\\\"Maiores eos enim quam aut. Quia ut dolores neque distinctio eveniet voluptas. Ipsam et quidem atque aliquam placeat vero similique assumenda. Atque vel excepturi quae quibusdam omnis in est.\\\",\\\"events\\\":39,\\\"ambience\\\":\\\"Producao\\\",\\\"status\\\":\\\"Ativo\\\",\\\"title\\\":\\\"Mrs.\\\",\\\"user_created\\\":4,\\\"user_updated\\\":null,\\\"deleted_at\\\":null,\\\"created_at\\\":\\\"2019-12-12 18:41:10\\\",\\\"updated_at\\\":\\\"2019-12-12 18:41:10\\\"},\\\"code\\\":200}\",\n            \"id_user\": 12,\n            \"type\": \"User\",\n            \"created_at\": \"2019-12-12 19:44:46\",\n            \"updated_at\": \"2019-12-12 19:44:46\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "669c08c5-21de-4a8b-93fb-2079c7ceb2ae",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8c643e87-c22f-430d-982c-6142f2fd09f5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

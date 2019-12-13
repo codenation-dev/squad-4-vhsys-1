@@ -38,7 +38,7 @@ Route::group(['middleware' => ['cors']], function () {
             Route::prefix('/logs')->group(function () {
                 Route::get('/list', 'Logs\\LogController@index')->name('logs');
                 Route::get('/filled', 'Logs\\LogController@filled')->name('filled');
-
+                Route::get('/search', 'Logs\\LogController@search')->name('search');
             });
         });
 
@@ -68,7 +68,6 @@ Route::group(['middleware' => ['cors']], function () {
                 Route::get('/list/{id}', 'Logs\\LogController@show')->name('single_logs');
                 Route::post('/create', 'Logs\\LogController@create')->name('create_logs');
                 Route::post('/tofile/{id}', 'Logs\\LogController@toFile')->name('tofile');
-                Route::get('/search', 'Logs\\LogController@search')->name('search');
                 Route::delete('delete/{id}', 'Logs\\LogController@destroy')->name('delete');
 
             });

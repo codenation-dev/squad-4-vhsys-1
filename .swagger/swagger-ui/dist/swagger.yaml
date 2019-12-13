@@ -1,0 +1,430 @@
+---
+swagger: "2.0"
+info:
+  description: Documentacao API squad 4 AceleraDEV codenation
+  version: 1.0.0
+  title: Doc Squad4 AceleraDEV
+  contact:
+    email: nunooo@hotmail.com.br
+host: backacelera.codeinfinity.com.br
+basePath: /api/v1/
+tags:
+
+- name: Public Routes
+  description: Endpoints Publics
+- name: Users Routes
+  description: Endpoints Users
+- name: Logs Routes
+  description: Endpoints Logs
+- name: Exclusion Routes
+  description: Endpoints Logs
+schemes:
+- http
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /requestToken:
+    post:
+      tags:
+      - Public Routes
+      summary:
+        Request an access token
+      description:
+        Request an access token
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - name: email
+        in: formData
+        description: your registered email.
+        required: true
+        type: string
+      - name: password
+        in: formData
+        description: your registered password.
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        401:
+          description: Not Authorized.
+  /registerUser:
+    post:
+      tags:
+        - Public Routes
+      summary:
+        Request to create a user
+      description:
+        Request to create a user
+      consumes:
+        - application/x-www-form-urlencoded
+        - application/json
+      parameters:
+        - name: name
+          in: formData
+          description: your name.
+          required: true
+          type: string
+        - name: email
+          in: formData
+          description: your e-mail.
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: your name.
+          required: true
+          type: string
+      responses:
+        200:
+          description: ERROR or OK
+        201:
+          description: Registered Successfully.
+#          USERS ROUTES
+  /users/list:
+    get:
+      tags:
+        - Users Routes
+      summary:
+        Request list all user
+      description:
+        Request will list all users.
+        100 will be listed per page
+      security:
+        - Bearer: []
+      consumes:
+        - application/json
+        - Authorization
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: false
+
+  /users/list/{id}:
+    post:
+      tags:
+        - Users Routes
+      summary:
+        Request a user list by id
+      description:
+        Request a user list by id
+      security:
+        - Bearer: []
+      consumes:
+        - application/json
+        - Authorization
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: false
+        - name: id
+          in: path
+          type: integer
+          required: true
+
+  /users/delete/{id}:
+    delete:
+      tags:
+        - Users Routes
+      summary:
+        Delete a user list by id
+      description:
+        Delete a user list by id
+      security:
+        - Bearer: []
+      consumes:
+        - application/json
+        - Authorization
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: false
+        - name: id
+          in: path
+          type: integer
+          required: true
+
+  /users/update/{id}:
+    put:
+      tags:
+        - Users Routes
+      summary:
+        Request to create a user
+      description:
+        Request to create a user
+      security:
+        - Bearer: []
+      consumes:
+        - application/x-www-form-urlencoded
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+        - name: authorization
+          in: header
+          type: string
+          required: false
+        - name: name
+          in: formData
+          description: your name.
+          required: true
+          type: string
+        - name: email
+          in: formData
+          description: your e-mail.
+          required: true
+          type: string
+        - name: password
+          in: formData
+          description: your name.
+          required: true
+          type: string
+
+  /users/listdeleted:
+      get:
+          tags:
+              - Users Routes
+          summary:
+              Request list all user
+          description:
+              Request will list all users.
+              100 will be listed per page
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+
+#         END USERS ROUTES
+#    LOGS ROUTES
+  /logs/list:
+    get:
+      tags:
+        - Logs Routes
+      summary:
+        Request list all Logs
+      description:
+        Request will list all Logs.
+        100 will be listed per page
+      security:
+        - Bearer: []
+      consumes:
+        - application/json
+        - Authorization
+      parameters:
+        - name: authorization
+          in: header
+          type: string
+          required: false
+
+  /logs/list/{id}:
+      get:
+          tags:
+              - Logs Routes
+          summary:
+              Request a log list by id
+          description:
+              Request a log list by id
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+              -   name: id
+                  in: path
+                  type: integer
+                  required: true
+
+  /logs/create:
+      post:
+          tags:
+              - Logs Routes
+          summary:
+              Request to create a Log
+          description:
+              Request to create a Log
+          security:
+              -   Bearer: []
+          consumes:
+              - application/x-www-form-urlencoded
+              - application/json
+              - Authorization
+          parameters:
+              -   name: level
+                  in: formData
+                  description: Level log.
+                  required: true
+                  type: string
+              -   name: log
+                  in: formData
+                  description: Message Log.
+                  required: true
+                  type: string
+              -   name: events
+                  in: formData
+                  description: number logs.
+                  required: true
+                  type: integer
+              -   name: ambience
+                  in: formData
+                  description: Ambiente log.
+                  required: true
+                  type: string
+              -   name: status
+                  in: formData
+                  description: Status log.
+                  required: true
+                  type: string
+              -   name: title
+                  in: formData
+                  description: title log.
+                  required: true
+                  type: string
+
+  /logs/tofile/{id}:
+      post:
+          tags:
+              - Logs Routes
+          summary:
+              Request to file log by id
+          description:
+              Request to file log by id
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+              -   name: id
+                  in: path
+                  type: integer
+                  required: true
+
+  /logs/search?:
+      get:
+          tags:
+              - Logs Routes
+          summary:
+              Request to search log
+          description:
+              Request to search log
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+              -   name: select
+                  in: path
+                  type: strig
+                  required: false
+              -   name: ambience
+                  in: path
+                  type: strig
+                  required: false
+              -   name: order
+                  in: path
+                  type: strig
+                  required: false
+
+
+  /logs/delete/{id}:
+      delete:
+          tags:
+              - Logs Routes
+          summary:
+              Request to delete log
+          description:
+              Request to delete log
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+              -   name: id
+                  in: path
+                  type: integer
+                  required: true
+
+  /logs/filled:
+      get:
+          tags:
+              - Logs Routes
+          summary:
+              Request list all Filled Logs
+          description:
+              Request will list all Logs.
+              100 will be listed per page
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+
+
+#    END LOGS ROUTES
+# EXCLUSION LOG ROUTES
+  /exclusions/list_exclusion:
+      get:
+          tags:
+              - Exclusion Routes
+          summary:
+              Request to list Exclusions log
+          description:
+              Request to List Exclusions log
+          security:
+              -   Bearer: []
+          consumes:
+              - application/json
+              - Authorization
+          parameters:
+              -   name: authorization
+                  in: header
+                  type: string
+                  required: false
+
+# END EXCLUSION LOG ROUTES
+
+
+
+
+# NOVO TESTE
+
+definitions: {}
